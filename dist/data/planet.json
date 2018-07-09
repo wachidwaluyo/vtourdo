@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Fakultas Teknik",
+    "name": "fteknik.jpg"
+  },
+  {
+    "title": "Teknik Informatika",
+    "name": "tinformatika.jpg"
+  },
+  {
+    "title": "PKK",
+    "name": "pkk.jpg"
+  },
+  {
+    "title": "Teknik Sipil",
+    "name": "tsipil.jpg"
+  },
+  {
+    "title": "Teknik Elektro",
+    "name": "telektro.jpg"
+  },
+  {
+    "title": "Teknik Mesin",
+    "name": "tmesin.jpg"
+  }   
+]

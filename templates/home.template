@@ -1,0 +1,46 @@
+<!--
+    Jumbotron Start
+-->
+<img class="wrapper animated fadeIn" src="/dist/images/bg.png" alt="Backgorund"/>
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-push-0 col-xs-8 col-xs-push-2 text-center">
+                <h1 class="text-left animated fadeInDownBig">
+                    Virtual Tour
+                </h1>
+                <h2 class="text-left animated fadeInLeftBig">
+                    Fakultas Teknik -
+                    <strong>
+                        UNESA
+                    </strong>
+                </h2>
+            </div>
+            <div class="col-md-3 col-sm-4 col-sm-push-0 col-xs-8 col-xs-push-2">
+                <div class="boxes-rounded boxes-colored animated zoomInDown">
+                    <a href="/vtour/tour.html" role="button">
+                        <img class="img-responsive center-block" src="/dist/images/play.png" style="width: 100px;" alt="Play"/>
+                        <h2 class="text-center" style="color: #fff;">
+                            PLAY
+                        </h2>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4 col-sm-push-0 col-xs-8 col-xs-push-2">
+                <div class="boxes-rounded animated zoomInDown">
+                    <a class="text-muted" href="/#/petunjuk">
+                        <img class="img-responsive center-block" src="/dist/images/360.png" style="width: 120px;" alt="Play"/>
+                        <h4 class="text-center" style="padding-top: 10%;">
+                            Lihat Petunjuk
+                        </h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Jumbotron End -->
+<!-- Initialize wave animation, apply if only inside .template file -->
+<script type="text/javascript">
+    Waves.attach('.boxes-rounded', ['waves-block', 'waves-float']);
+</script>

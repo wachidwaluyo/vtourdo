@@ -1,0 +1,168 @@
+<div class="container guide  animated fadeIn">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <a href="#tutorial">
+                <i class="fa fa-bookmark-o fa-5x">
+                </i>
+            </a>
+            <a href="#tutorial">
+                <h4>
+                    Bagaimana Penggunaanya?
+                </h4>
+            </a>
+        </div>
+        <div class="col-md-4 text-center">
+            <a href="#browser">
+                <i class="fa fa-chrome fa-5x">
+                </i>
+            </a>
+            <a href="#browser">
+                <h4>
+                    Dukungan Browser
+                </h4>
+            </a>
+        </div>
+        <div class="col-md-4 text-center">
+            <a href="#setting">
+                <i class="fa fa-gear fa-5x">
+                </i>
+            </a>
+            <a href="#setting">
+                <h4>
+                    Pengaturan
+                </h4>
+            </a>
+        </div>
+        <div class="col-md-12" id="tutorial">
+            <h2 class="text-left">
+                <strong>
+                    Bagaimana Penggunaanya?
+                </strong>
+            </h2>
+            <ul style="list-style-type: none; padding-top: 10px;">
+                <li>
+                    <ol>
+                        <li>
+                            Kemudian buka halaman utama dengan mengklik menu "Home" atau klik
+                            <a class="btn-link" href="/">
+                                disini
+                            </a>
+                        </li>
+                        <li>
+                            Klik tombol "PLAY"
+                        </li>
+                        <li>
+                            Kemudian anda akan secara otomatis diarahkan ke Virtual Tour UNESA
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-12" id="browser">
+            <h2 class="text-left">
+                <strong>
+                    Dukungan Browser
+                </strong>
+            </h2>
+            <h4>
+                Untuk mengetahui versi browser:
+            </h4>
+            <span>
+                <strong>
+                    Google Chrome
+                </strong>
+            </span>
+            <ol>
+                <li>
+                    Klik menu setting pada browser chrome, pada bagian pojok kanan atas
+                    <img src="dist/images/settings/chrome_set.png" alt="Setting"/>
+                </li>
+                <li>
+                    Kemudian pilih "Help" dan pilih "About Google Chrome"
+                    <img src="dist/images/settings/chrome_set_about.png" alt="Setting"/>
+                </li>
+            </ol>
+            <span>
+                <strong>
+                    Mozilla Firefox
+                </strong>
+            </span>
+            <ol>
+                <li>
+                    Klik menu setting pada browser firefox, pada bagian pojok kanan atas
+                    <img src="dist/images/settings/chrome_set.png" alt="Setting"/>
+                </li>
+                <li>
+                    Kemudian pilih "Help" dan pilih "About Mozilla Firefox"
+                    <img src="dist/images/settings/chrome_set_about.png" alt="Setting"/>
+                </li>
+            </ol>            
+            <h4>
+                Daftar versi browser yang didukung
+            </h4>
+            <ol>
+                <li>
+                    Google Chrome (Windows, Mac, Linux) versi 20 keatas
+                </li>
+                <li>
+                    Mozilla Firefox (Windows, Mac, Linux) versi 10 keatas
+                </li>
+                <li>
+                    Microsoft Internet Explorer (Windows 7, Windows 8, Windows RT, Windows Phone 8) versi 10 keatas
+                </li>
+                <li>
+                    Desktop Safari (Windows and Mac), direkomendasikan versi 5.1 atau keatas
+                </li>
+                <li>
+                    Mobile Safari di perangkat iOS (iPhone, iPad, iPod Touch), direkomendasikan versi 5.1 atau keatas
+                </li>
+                <li>
+                    Android Default Browsers, OS yang direkomendasikan Android versi 4.0 keatas
+                </li>
+            </ol>
+        </div>
+        <div class="col-md-12" id="setting">
+            <h2 class="text-left">
+                <strong>
+                    Pengaturan
+                </strong>
+            </h2>
+            <h3>
+                Bagi pengguna Google Chrome
+                <img width="50px" src="dist/images/settings/chrome.png" alt="Chrome"/>
+            </h3>
+            <ol>
+                <li>
+                    Pastikan anda telah menginstall adobe flash player yang bisa di download
+                    <a class="btn-link" href="https://get.adobe.com/flashplayer/">
+                        disini
+                    </a>
+                </li>
+                <li>
+                    Jika Google Chrome anda "up to date" maka tidak perlu menginstall flash atau bisa juga download Mozilla Firefox
+                    <a class="btn-link" href="#">
+                        disini
+                    </a>
+                </li>
+            </ol>
+            <h3>
+                Bagi pengguna Mozilla Firefox
+                <img width="42px" src="dist/images/settings/firefox.png" alt="Firefox"/>
+            </h3>
+            <ol>
+                <li>
+                    Pastikan anda telah menginstall adobe flash player yang bisa di download
+                    <a class="btn-link" href="https://get.adobe.com/flashplayer/">
+                        disini
+                    </a>
+                </li>
+                <li>
+                    Jika Mozilla Firefox anda "up to date" maka tidak perlu menginstall flash atau bisa juga download Google Chrome
+                    <a class="btn-link" href="#">
+                        disini
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="container-fluid">
+	<div class="row">
+		<!-- Thumbs Section -->
+		<h2 class="text-center"><strong>Fakultas Teknik - Preview</strong></h2>
+		<hr>
+			<div id="data"></div>
+			<div class="clearfix"></div>		
+		<hr>
+		<!-- End Section -->
+
+		<!-- Thumbs Section -->
+		<h2 class="text-center"><strong>Fakultas Teknik - Tiny Planet</strong></h2>
+		<hr>
+			<div id="data-planet"></div>
+			<div class="clearfix"></div>		
+		<hr>
+		<!-- End Section -->
+	</div>
+</div>

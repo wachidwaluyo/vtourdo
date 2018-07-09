@@ -1,0 +1,10 @@
+<div class="col-md-4 col-sm-6 col-xs-12 gutter-zero">
+	<!-- Start Hover -->
+    <div class="hovereffect animated fadeIn">
+        <img class="img-responsive" src="../vtour/panos/<%= item.url %>" alt="<%= item.title %>">
+            <div class="overlay">
+                <h2><%= item.title %></h2>
+            </div>
+    </div>
+    <!-- End Hover -->
+</div>	

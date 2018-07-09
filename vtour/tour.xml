@@ -1,0 +1,1149 @@
+<krpano version="1.16" title="Fakultas Teknik" onstart="startup(); playsound(bg, music/bird.mp3, 0);">
+
+	<include url="skin/vtourskin.xml" />
+
+	<!-- set skin settings: bingmaps? gyro? thumbnail controlling? tooltips? -->
+	<!-- tooltips_thumbs="false"
+	     tooltips_hotspots="false" 
+		 changed to true	 
+	-->
+
+	<!-- Bing Maps configuration -->
+	<skin_settings bingmaps="true"
+	               bingmaps_key="AiocgVKUXUkeP-GRDM2pmJ3vIoSdIePjdwoypaelPQaxtR0GRamNgQsyIgFNsnzX"
+	               bingmaps_zoombuttons="true"
+	               gyro="true"
+	               thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160"
+	               thumbs_opened="false"
+	               thumbs_text="false"
+	               thumbs_dragging="true"
+	               thumbs_onhoverscrolling="false"
+	               thumbs_scrollbuttons="false"
+	               thumbs_scrollindicator="false"
+	               tooltips_thumbs="true"
+	               tooltips_hotspots="true"
+	               tooltips_mapspots="false"
+	               controlbar_offset="20"
+	               />
+	
+	<!-- Audio Configuration -->
+	<plugin name="soundinterface" url="plugins/soundinterface.swf" alturl="plugins/soundinterface.js" preload="true" />
+
+	<!-- set optional skin logo url, opened_onclick="openurl('..',_blank); to view image first then click again to open url" -->
+	<layer name="skin_logo" url="../dist/images/logo.png" scale=".8" onclick="openurl('..',_blank);" align="lefttop" />
+
+
+<!-- 	<action name="startup">
+		if(startscene === null, copy(startscene,scene[0].name));
+		loadscene(get(startscene), null, MERGE);
+	</action> -->
+	<!-- Example of startscene:
+	http://127.0.0.1:8080/vtour/tour.html?startscene=scene_A8_Lantai_Atas_Barat -->
+	<action name="startup" devices="ios" >
+		if(startscene === null, copy(startscene,scene[0].name));
+		loadscene(get(startscene), null, MERGE);
+		delayedcall(5, rotatestart());
+		delayedcall(3, showMenu() );
+	</action>
+
+	<action name="startup" devices="flash|html5+!ios" >
+		if(startscene === null, copy(startscene,scene[0].name));set(display.flash10, off); 
+		loadscene(get(startscene),view.stereographic=true&amp;view.fisheye=1.0&amp;view.fov=155&amp;view.fovtype=VFOV&amp;view.fovmax=150&amp;view.hlookat=-120&amp;view.vlookat=77);
+		set(autorotate.enabled,true);
+		set(autorotate.speed,2);
+		wait(blend);
+		delayedcall(2, normalview() );
+		delayedcall(6, rotatestart());
+		delayedcall(6, showMenu() );
+	</action>
+
+	<action name="normalview">
+		tween(view.hlookat, -192, 5, easeInOutQuad);
+		tween(view.vlookat, -6, 5, easeInOutQuad);
+		tween(view.fov, 70,  5, easeInOutQuad);
+		tween(view.fisheye, 0.0, 5, easeInOutQuad);
+		delayedcall(6,set(view.fovmin, 20));
+		delayedcall(6,set(view.fovmax, 80));
+		wait(2);
+		set(display.flash10, on);
+	</action>
+
+	<!--
+
+			inlined contextmenu.xml 1.18
+			- Change the control mode and the viewing projection via the right click contextmenu.
+			- The distorted view items will be only shown when Flash or WebGL are supported and when the
+			  pano image itself is a full 360x180 pano.
+			- Note: The distorted views will only work correctly when view.stereographic=true will be set.
+		
+	-->
+	<contextmenu>
+		<item name="kr" caption="KRPANO"/>
+		<item name="fs" caption="FULLSCREEN"/>
+		<item name="cc" caption="Change Controlmode" onclick="cm_changecontrolmode();" separator="true"/>
+		<item name="nv" caption="Normal View" onclick="cm_normal_view();" showif="view.vlookatrange == 180" separator="true"/>
+		<item name="fv" caption="Fisheye View" onclick="cm_fisheye_view();" showif="view.vlookatrange == 180" devices="flash|webgl"/>
+		<item name="sv" caption="Stereographic View" onclick="cm_stereographic_view();" showif="view.vlookatrange == 180" devices="flash|webgl"/>
+		<item name="av" caption="Architectural View" onclick="cm_architectural_view();" showif="view.vlookatrange == 180"/>
+		<item name="pv" caption="Pannini View" onclick="cm_pannini_view();" showif="view.vlookatrange == 180" devices="flash|webgl"/>
+		<item name="lp" caption="Little Planet View" onclick="cm_littleplanet_view();" showif="view.vlookatrange == 180" devices="flash|webgl"/>
+	</contextmenu>
+
+	<action name="cm_changecontrolmode">
+		switch(control.mouse, moveto, drag);
+		switch(control.touch, moveto, drag);
+	</action>
+	<action name="cm_look_straight">
+		if(view.vlookat LT -80 OR view.vlookat GT +80,
+			tween(view.vlookat, 0.0, 1.0, easeInOutSine);
+			tween(view.fov,     100, distance(150,0.8));
+		  );
+	</action>
+	<action name="cm_normal_view">
+		cm_look_straight();
+		tween(view.architectural, 0.0, distance(1.0,0.5));
+		tween(view.pannini,       0.0, distance(1.0,0.5));
+		tween(view.fisheye,       0.0, distance(1.0,0.5));
+	</action>
+	<action name="cm_architectural_view">
+		cm_look_straight();
+		tween(view.architectural, 1.0, distance(1.0,0.5));
+		tween(view.pannini,       0.0, distance(1.0,0.5));
+		tween(view.fisheye,       0.0, distance(1.0,0.5));
+	</action>
+	<action name="cm_fisheye_view">
+		cm_look_straight();
+		tween(view.architectural, 0.0,  distance(1.0,0.5));
+		tween(view.pannini,       0.0,  distance(1.0,0.5));
+		tween(view.fisheye,       0.35, distance(1.0,0.5));
+	</action>
+	<action name="cm_stereographic_view">
+		cm_look_straight();
+
+		set(display.flash10, off);
+		tween(view.architectural, 0.0, 0.25);
+		set(backtonormalfirst, false);
+		if(view.pannini       == true,  set(backtonormalfirst,true) );
+		if(view.stereographic == false, set(backtonormalfirst,true) );
+		if(backtonormalfirst, tween(view.fisheye, 0.0 ,distance(1.0, 0.25), easeoutquad, WAIT); );
+		set(view.pannini, false);
+		set(view.stereographic, true);
+		set(view.fov, 155);
+		set(view.fovmax, 150);
+		set(view.hlookat, -120);
+		set(view.vlookat, 77);
+		tween(view.fisheye, 1.0, distance(1.0, 0.8), easeoutquad);
+	</action>
+	<action name="cm_pannini_view">
+		cm_look_straight();
+		tween(view.architectural, 0.0, distance(1.0,0.5));
+		tween(view.pannini,       1.0, distance(1.0,0.8));
+		if(view.fisheye LT 0.1,
+			tween(view.fisheye, 1.0, distance(1.0,0.8));
+		  );
+	</action>
+	<action name="cm_littleplanet_view">
+		tween(view.architectural, 0.0, distance(1.0,0.5));
+		tween(view.pannini,       0.0, distance(1.0,0.5));
+		tween(view.fisheye,       1.0, distance(1.0,0.8));
+		tween(view.fov,           150, distance(150,0.8));
+		tween(view.vlookat,        90, distance(100,0.8));
+		add(new_hlookat, view.hlookat, 123.0);
+		tween(view.hlookat, get(new_hlookat), distance(100,0.8));
+	</action>	
+
+	<scene name="scene_Gedung_Fakultas_Teknik" title="Gedung Fakultas Teknik" onstart="" thumburl="panos/Gedung_Fakultas_Teknik.tiles/thumb.jpg" lat="-7.31587500" lng="112.72693611" heading="180.0">
+
+		<view hlookat="-185.270" vlookat="-7.751" fovtype="MFOV" fov="70.000" maxpixelzoom="4.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Gedung_Fakultas_Teknik.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Gedung_Fakultas_Teknik.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Gedung_Fakultas_Teknik.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-15.632" atv="-0.428" linkedscene="scene_gedung_teknik_elektro" />
+		
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="-100.636" atv="1.809" linkedscene="scene_parkir_mahasiswa_masuk" />
+		<hotspot name="spot4" style="skin_hotspotstyle" ath="53.556" atv="-1.025" linkedscene="scene_gedung_teknik_sipil" />
+		<hotspot name="spot5" style="skin_hotspotstyle" ath="172.663" atv="-1.849" linkedscene="scene_fakultas_lantai_1" />
+
+	</scene>
+
+	<scene name="scene_A8_Lantai_Atas_Barat" title="A8 Lantai Atas Barat" onstart="" thumburl="panos/A8_Lantai_Atas_Barat.tiles/thumb.jpg" lat="-7.31724444" lng="112.72613056" heading="112.5">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A8_Lantai_Atas_Barat.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A8_Lantai_Atas_Barat.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A8_Lantai_Atas_Barat.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="2.033" atv="1.307" linkedscene="scene_a8_lantai_atas_timur" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-11.747" atv="19.799" linkedscene="scene_tangga_a8" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="-124.777" atv="34.458" linkedscene="scene_parkir_pegawai_karyawan" />
+
+	</scene>
+
+	<scene name="scene_A8_Lantai_Atas_Timur" title="A8 Lantai Atas Timur" onstart="" thumburl="panos/A8_Lantai_Atas_Timur.tiles/thumb.jpg" lat="-7.31730556" lng="112.72651944" heading="112.5">
+
+		<view hlookat="169.210" vlookat="-1.447" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A8_Lantai_Atas_Timur.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A8_Lantai_Atas_Timur.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A8_Lantai_Atas_Timur.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-162.645" atv="29.854" linkedscene="scene_tangga_a8" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-122.275" atv="28.306" linkedscene="scene_gazebo_a8" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="175.679" atv="0.407" linkedscene="scene_a8_lantai_atas_barat" />
+
+	</scene>
+
+	<scene name="scene_BEM_Fakultas" title="BEM Fakultas" onstart="" thumburl="panos/BEM_Fakultas.tiles/thumb.jpg" lat="-7.31702222" lng="112.72678611" heading="292.5">
+
+		<view hlookat="197.257" vlookat="-2.552" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/BEM_Fakultas.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/BEM_Fakultas.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/BEM_Fakultas.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-23.048" atv="3.684" linkedscene="scene_gazebo_a8" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-58.672" atv="2.403" linkedscene="scene_depan_gedung_a8" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="55.669" atv="1.189" linkedscene="scene_depan_gedung_a7" />
+
+	</scene>
+
+	<scene name="scene_Depan_Gedung_A7" title="Depan Gedung A7" onstart="" thumburl="panos/Depan_Gedung_A7.tiles/thumb.jpg" lat="-7.31676389" lng="112.72655556" heading="22.5">
+
+		<view hlookat="195.282" vlookat="0.784" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Depan_Gedung_A7.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Depan_Gedung_A7.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Depan_Gedung_A7.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-111.667" atv="0.255" linkedscene="scene_mushola_fakultas" />
+		
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="128.113" atv="-1.255" linkedscene="scene_bem_fakultas" />
+		<hotspot name="spot4" style="skin_hotspotstyle" ath="-81.880" atv="1.993" linkedscene="scene_gazebo_sipil" />
+		
+		<hotspot name="spot6" style="skin_hotspotstyle" ath="2.650" atv="4.252" linkedscene="scene_a6_lantai_1" />
+		<hotspot name="spot5" style="skin_hotspotstyle" ath="179.779" atv="1.606" linkedscene="scene_a7_lantai_1" />
+
+	</scene>
+
+	<scene name="scene_Depan_Gedung_A8" title="Depan Gedung A8" onstart="" thumburl="panos/Depan_Gedung_A8.tiles/thumb.jpg" lat="-7.31701389" lng="112.72607500" heading="202.5">
+
+		<view hlookat="-171.553" vlookat="-7.211" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Depan_Gedung_A8.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Depan_Gedung_A8.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Depan_Gedung_A8.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-173.092" atv="-0.439" linkedscene="scene_gazebo_a8" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-134.920" atv="0.446" linkedscene="scene_bem_fakultas" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="101.920" atv="1.469" linkedscene="scene_gedung_teknik_informatika" />
+
+	</scene>
+
+	<scene name="scene_Gazebo_A8" title="Gazebo A8" onstart="" thumburl="panos/Gazebo_A8.tiles/thumb.jpg" lat="-7.31719444" lng="112.72646389" heading="90.0">
+
+		<view hlookat="18.673" vlookat="10.401" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Gazebo_A8.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Gazebo_A8.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Gazebo_A8.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="104.284" atv="-17.532" linkedscene="scene_tangga_a8" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="173.166" atv="4.105" linkedscene="scene_parkir_pegawai_karyawan" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="35.642" atv="5.363" linkedscene="scene_bem_fakultas" />
+		<hotspot name="spot4" style="skin_hotspotstyle" ath="105.582" atv="6.407" linkedscene="scene_depan_gedung_a8" />
+		<hotspot name="spot5" style="skin_hotspotstyle" ath="-60.317" atv="1.022" linkedscene="scene_depan_gedung_a7" />
+		<hotspot name="spot6" style="skin_hotspotstyle" ath="22.012" atv="-7.832" linkedscene="scene_a8_lantai_2" />
+		<hotspot name="spot7" style="skin_hotspotstyle" ath="-158.035" atv="-44.930" linkedscene="scene_a8_lantai_3" />
+
+	</scene>
+
+	<scene name="scene_Gazebo_Sipil" title="Gazebo Sipil" onstart="" thumburl="panos/Gazebo_Sipil.tiles/thumb.jpg" lat="-7.31645556" lng="112.72620278" heading="112.5">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Gazebo_Sipil.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Gazebo_Sipil.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Gazebo_Sipil.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="5.547" atv="0.202" linkedscene="scene_gedung_teknik_mesin" />
+		
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="56.007" atv="2.305" linkedscene="scene_mushola_fakultas" />
+		<hotspot name="spot4" style="skin_hotspotstyle" ath="178.232" atv="2.064" linkedscene="scene_gedung_informatika_lama_" />
+		<hotspot name="spot5" style="skin_hotspotstyle" ath="-88.473" atv="-0.937" linkedscene="scene_a4_lantai_1" />
+		<hotspot name="spot6" style="skin_hotspotstyle" ath="115.721" atv="2.129" linkedscene="scene_a3_lantai_1" />
+
+	</scene>
+
+	<scene name="scene_Gedung_Fakultas_Depan" title="Gedung Fakultas Depan" onstart="" thumburl="panos/Gedung_Fakultas_Depan.tiles/thumb.jpg" lat="-7.31546667" lng="112.72730000" heading="180.0">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Gedung_Fakultas_Depan.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Gedung_Fakultas_Depan.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Gedung_Fakultas_Depan.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-97.608" atv="4.022" linkedscene="scene_lapangan_voli_ppti" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="124.933" atv="0.122" linkedscene="scene_mushola_ppti" />
+		<hotspot name="spot4" style="skin_hotspotstyle" ath="0.872" atv="3.917" linkedscene="scene_fakultas_lantai_1" />
+
+	</scene>
+
+	<scene name="scene_Gedung_Informatika_Lama_" title="Gedung Informatika Lama " onstart="" thumburl="panos/Gedung_Informatika_Lama_.tiles/thumb.jpg" lat="-7.31621667" lng="112.72560000" heading="112.5">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Gedung_Informatika_Lama_.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Gedung_Informatika_Lama_.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Gedung_Informatika_Lama_.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="38.441" atv="3.524" linkedscene="scene_gedung_pkk" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-28.151" atv="1.025" linkedscene="scene_gazebo_sipil" />
+
+	</scene>
+
+	<scene name="scene_Gedung_PKK" title="Gedung PKK" onstart="" thumburl="panos/Gedung_PKK.tiles/thumb.jpg" lat="-7.31646111" lng="112.72599444" heading="202.5">
+
+		<view hlookat="-131.006" vlookat="2.172" fovtype="MFOV" fov="115.187" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Gedung_PKK.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Gedung_PKK.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Gedung_PKK.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="123.787" atv="1.062" linkedscene="scene_gedung_informatika_lama_" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="7.431" atv="2.236" linkedscene="scene_gedung_teknik_informatika" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="-71.944" atv="2.784" linkedscene="scene_parkir_pegawai_karyawan" />
+		<hotspot name="spot4" style="skin_hotspotstyle" ath="-100.974" atv="0.249" linkedscene="scene_a3_lantai_1" />
+
+	</scene>
+
+	<scene name="scene_Gedung_Teknik_Elektro" title="Gedung Teknik Elektro" onstart="" thumburl="panos/Gedung_Teknik_Elektro.tiles/thumb.jpg" lat="-7.31617222" lng="112.72698611" heading="225.0">
+
+		<view hlookat="-387.732" vlookat="-3.483" fovtype="MFOV" fov="121.315" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Gedung_Teknik_Elektro.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Gedung_Teknik_Elektro.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Gedung_Teknik_Elektro.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="134.044" atv="-1.609" linkedscene="scene_gedung_fakultas_teknik" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="65.777" atv="-2.139" linkedscene="scene_gedung_teknik_sipil" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="-20.355" atv="3.689" linkedscene="scene_gedung_teknik_mesin" />
+		<hotspot name="spot4" style="skin_hotspotstyle" ath="-31.613" atv="3.829" linkedscene="scene_a5_lantai_1" />
+
+	</scene>
+
+	<scene name="scene_Gedung_Teknik_Informatika" title="Gedung Teknik Informatika" onstart="" thumburl="panos/Gedung_Teknik_Informatika.tiles/thumb.jpg" lat="-7.31705000" lng="112.72593889" heading="292.5">
+
+		<view hlookat="166.210" vlookat="-4.364" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Gedung_Teknik_Informatika.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Gedung_Teknik_Informatika.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Gedung_Teknik_Informatika.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="88.973" atv="-2.258" linkedscene="scene_gedung_pkk" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-161.270" atv="0.333" linkedscene="scene_depan_gedung_a8" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="176.656" atv="-0.373" linkedscene="scene_a1_lantai_1" />
+
+	</scene>
+
+	<scene name="scene_Gedung_Teknik_Mesin" title="Gedung Teknik Mesin" onstart="" thumburl="panos/Gedung_Teknik_Mesin.tiles/thumb.jpg" lat="-7.31633611" lng="112.72668611" heading="22.5">
+
+		<view hlookat="169.987" vlookat="-0.609" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Gedung_Teknik_Mesin.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Gedung_Teknik_Mesin.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Gedung_Teknik_Mesin.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="87.758" atv="-0.616" linkedscene="scene_parkir_mahasiswa_selatan" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-1.011" atv="-0.865" linkedscene="scene_gedung_teknik_elektro" />
+		
+		<hotspot name="spot4" style="skin_hotspotstyle" ath="-52.264" atv="0.323" linkedscene="scene_gedung_teknik_sipil" />
+		<hotspot name="spot5" style="skin_hotspotstyle" ath="178.444" atv="4.238" linkedscene="scene_a6_lantai_1" />
+
+	</scene>
+
+	<scene name="scene_Gedung_Teknik_Sipil" title="Gedung Teknik Sipil" onstart="" thumburl="panos/Gedung_Teknik_Sipil.tiles/thumb.jpg" lat="-7.31596667" lng="112.72640833" heading="202.5">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Gedung_Teknik_Sipil.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Gedung_Teknik_Sipil.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Gedung_Teknik_Sipil.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-80.705" atv="2.879" linkedscene="scene_gedung_teknik_elektro" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-145.009" atv="1.172" linkedscene="scene_gedung_fakultas_teknik" />
+		
+		<hotspot name="spot4" style="skin_hotspotstyle" ath="17.983" atv="2.210" linkedscene="scene_a4_lantai_1" />
+
+	</scene>
+
+	<scene name="scene_Lapangan_Voli_PPTI" title="Lapangan Voli PPTI" onstart="" thumburl="panos/Lapangan_Voli_PPTI.tiles/thumb.jpg" lat="-7.31554722" lng="112.72726944" heading="45.0">
+
+		<view hlookat="-122.138" vlookat="4.538" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Lapangan_Voli_PPTI.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Lapangan_Voli_PPTI.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Lapangan_Voli_PPTI.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-92.707" atv="3.321" linkedscene="scene_gedung_fakultas_depan" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="125.270" atv="0.807" linkedscene="scene_parkir_mahasiswa_masuk" />
+
+	</scene>
+
+	<scene name="scene_Mushola_Fakultas" title="Mushola Fakultas" onstart="" thumburl="panos/Mushola_Fakultas.tiles/thumb.jpg" lat="-7.31664722" lng="112.72624167" heading="112.5">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Mushola_Fakultas.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Mushola_Fakultas.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Mushola_Fakultas.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-27.089" atv="8.643" linkedscene="scene_depan_gedung_a7" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-104.437" atv="8.656" linkedscene="scene_gazebo_sipil" />
+
+	</scene>
+
+	<scene name="scene_Mushola_PPTI" title="Mushola PPTI" onstart="" thumburl="panos/Mushola_PPTI.tiles/thumb.jpg" lat="-7.31526111" lng="112.72696944" heading="90.0">
+
+		<view hlookat="416.942" vlookat="3.885" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Mushola_PPTI.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Mushola_PPTI.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Mushola_PPTI.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="56.071" atv="1.272" linkedscene="scene_gedung_fakultas_depan" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-161.425" atv="1.829" linkedscene="scene_parkir_fakultas" />
+
+	</scene>
+
+	<scene name="scene_Parkir_Fakultas" title="Parkir Fakultas" onstart="" thumburl="panos/Parkir_Fakultas.tiles/thumb.jpg" lat="-7.31558889" lng="112.72704722" heading="22.5">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Parkir_Fakultas.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Parkir_Fakultas.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Parkir_Fakultas.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="56.219" atv="1.542" linkedscene="scene_mushola_ppti" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="134.828" atv="1.296" linkedscene="scene_gedung_fakultas_teknik" />
+
+	</scene>
+
+	<scene name="scene_Parkir_Mahasiswa_Masuk" title="Parkir Mahasiswa Masuk" onstart="" thumburl="panos/Parkir_Mahasiswa_Masuk.tiles/thumb.jpg" lat="-7.31585556" lng="112.72758889" heading="135.0">
+
+		<view hlookat="155.822" vlookat="7.891" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Parkir_Mahasiswa_Masuk.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Parkir_Mahasiswa_Masuk.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Parkir_Mahasiswa_Masuk.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-156.358" atv="2.632" linkedscene="scene_lapangan_voli_ppti" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="137.477" atv="-0.863" linkedscene="scene_gedung_fakultas_teknik" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="80.634" atv="-2.480" linkedscene="scene_parkir_mahasiswa_selatan" />
+
+	</scene>
+
+	<scene name="scene_Parkir_Mahasiswa_Selatan" title="Parkir Mahasiswa Selatan" onstart="" thumburl="panos/Parkir_Mahasiswa_Selatan.tiles/thumb.jpg" lat="-7.31654444" lng="112.72708056" heading="45.0">
+
+		<view hlookat="-30.328" vlookat="3.961" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Parkir_Mahasiswa_Selatan.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Parkir_Mahasiswa_Selatan.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Parkir_Mahasiswa_Selatan.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-71.246" atv="2.806" linkedscene="scene_gedung_teknik_elektro" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="175.211" atv="0.765" linkedscene="scene_bem_fakultas" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="-6.152" atv="1.891" linkedscene="scene_parkir_mahasiswa_masuk" />
+
+	</scene>
+
+	<scene name="scene_Parkir_Pegawai_Karyawan" title="Parkir Pegawai Karyawan" onstart="" thumburl="panos/Parkir_Pegawai_Karyawan.tiles/thumb.jpg" lat="-7.31700000" lng="112.72631667" heading="45.0">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Parkir_Pegawai_Karyawan.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Parkir_Pegawai_Karyawan.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Parkir_Pegawai_Karyawan.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-25.447" atv="1.641" linkedscene="scene_mushola_fakultas" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-97.345" atv="0.239" linkedscene="scene_gedung_pkk" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="-158.069" atv="0.578" linkedscene="scene_gedung_teknik_informatika" />
+		<hotspot name="spot4" style="skin_hotspotstyle" ath="107.968" atv="0.524" linkedscene="scene_depan_gedung_a8" />
+		<hotspot name="spot5" style="skin_hotspotstyle" ath="46.733" atv="1.525" linkedscene="scene_gazebo_a8" />
+		<hotspot name="spot6" style="skin_hotspotstyle" ath="-70.035" atv="0.345" linkedscene="scene_a3_lantai_1" />
+
+	</scene>
+
+	<scene name="scene_Tangga_A8" title="Tangga A8" onstart="" thumburl="panos/Tangga_A8.tiles/thumb.jpg" lat="-7.31728056" lng="112.72645556" heading="180.0">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Tangga_A8.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Tangga_A8.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Tangga_A8.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-163.219" atv="25.350" linkedscene="scene_gazebo_a8" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="64.616" atv="-25.684" linkedscene="scene_a8_lantai_atas_barat" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="-24.346" atv="-26.314" linkedscene="scene_a8_lantai_atas_timur" />
+
+	</scene>
+
+	<!-- Second Panos -->
+
+	<scene name="scene_A1_Lantai_1" title="A1 Lantai 1" onstart="" thumburl="panos/A1_Lantai_1.tiles/thumb.jpg" lat="-7.31765000" lng="112.72534167" heading="225.0">
+
+		<view hlookat="127.092" vlookat="9.523" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A1_Lantai_1.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A1_Lantai_1.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A1_Lantai_1.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-19.920" atv="-17.565" linkedscene="scene_a1_lantai_2" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="89.544" atv="3.875" linkedscene="scene_gedung_teknik_informatika" />
+
+	</scene>
+
+	<scene name="scene_A1_Lantai_2" title="A1 Lantai 2" onstart="" thumburl="panos/A1_Lantai_2.tiles/thumb.jpg" lat="-7.31722778" lng="112.72571944" heading="202.5">
+
+		<view hlookat="16.323" vlookat="6.524" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A1_Lantai_2.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A1_Lantai_2.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A1_Lantai_2.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="15.865" atv="26.456" linkedscene="scene_a1_lantai_1" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="26.184" atv="-13.723" linkedscene="scene_a1_lantai_3" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="136.162" atv="4.848" linkedscene="scene_a1_ruang_kelas_3" />
+
+	</scene>
+
+	<scene name="scene_A1_Lantai_3" title="A1 Lantai 3" onstart="" thumburl="panos/A1_Lantai_3.tiles/thumb.jpg" lat="-7.31720000" lng="112.72560833" heading="225.0">
+
+		<view hlookat="-0.333" vlookat="5.291" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A1_Lantai_3.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A1_Lantai_3.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A1_Lantai_3.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-7.355" atv="22.066" linkedscene="scene_a1_lantai_2" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-74.125" atv="7.161" linkedscene="scene_a1_ruang_kelas" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="97.504" atv="6.556" linkedscene="scene_a1_ruang_kelas_2" />
+
+	</scene>
+
+	<scene name="scene_A1_Ruang_Kelas_2" title="A1 Ruang Kelas 2" onstart="" thumburl="panos/A1_Ruang_Kelas_2.tiles/thumb.jpg" lat="-7.31718333" lng="112.72574722" heading="292.5">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A1_Ruang_Kelas_2.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A1_Ruang_Kelas_2.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A1_Ruang_Kelas_2.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-149.537" atv="2.045" linkedscene="scene_a1_lantai_3" />
+
+	</scene>
+
+	<scene name="scene_A1_Ruang_Kelas_3" title="A1 Ruang Kelas 3" onstart="" thumburl="panos/A1_Ruang_Kelas_3.tiles/thumb.jpg" lat="-7.31682500" lng="112.72539167" heading="135.0">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A1_Ruang_Kelas_3.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A1_Ruang_Kelas_3.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A1_Ruang_Kelas_3.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="16.793" atv="2.225" linkedscene="scene_a1_lantai_2" />
+
+	</scene>
+
+	<scene name="scene_A1_Ruang_Kelas" title="A1 Ruang Kelas" onstart="" thumburl="panos/A1_Ruang_Kelas.tiles/thumb.jpg" lat="-7.31727222" lng="112.72570833" heading="135.0">
+
+		<view hlookat="-20.692" vlookat="0.332" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A1_Ruang_Kelas.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A1_Ruang_Kelas.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A1_Ruang_Kelas.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-105.971" atv="5.165" linkedscene="scene_a1_lantai_3" />
+
+	</scene>
+
+	<scene name="scene_A3_Lantai_1" title="A3 Lantai 1" onstart="" thumburl="panos/A3_Lantai_1.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="86.887" vlookat="-0.197" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A3_Lantai_1.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A3_Lantai_1.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A3_Lantai_1.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="65.529" atv="-19.814" linkedscene="scene_a3_lantai_2" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="102.201" atv="3.309" linkedscene="scene_gazebo_sipil" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="-87.966" atv="4.171" linkedscene="scene_a1_lantai_1" />
+		<hotspot name="spot4" style="skin_hotspotstyle" ath="-127.196" atv="4.313" linkedscene="scene_parkir_pegawai_karyawan" />
+
+	</scene>
+
+	<scene name="scene_A3_Lantai_2" title="A3 Lantai 2" onstart="" thumburl="panos/A3_Lantai_2.tiles/thumb.jpg" lat="-7.31661111" lng="112.72596667" heading="247.5">
+
+		<view hlookat="135.910" vlookat="1.304" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A3_Lantai_2.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A3_Lantai_2.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A3_Lantai_2.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="166.023" atv="25.823" linkedscene="scene_a3_lantai_1" />
+
+	</scene>
+
+	<scene name="scene_A4_Lantai_1" title="A4 Lantai 1" onstart="" thumburl="panos/A4_Lantai_1.tiles/thumb.jpg" lat="-7.31565833" lng="112.72843333" heading="292.5">
+
+		<view hlookat="-259.029" vlookat="-10.841" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A4_Lantai_1.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A4_Lantai_1.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A4_Lantai_1.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-103.189" atv="-10.225" linkedscene="scene_a4_lantai_2" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="87.195" atv="7.322" linkedscene="scene_gedung_teknik_sipil" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="-96.114" atv="5.953" linkedscene="scene_gazebo_sipil" />
+
+	</scene>
+
+	<scene name="scene_A4_Lantai_2" title="A4 Lantai 2" onstart="" thumburl="panos/A4_Lantai_2.tiles/thumb.jpg" lat="-7.31608056" lng="112.72625833" heading="90.0">
+
+		<view hlookat="124.105" vlookat="0.968" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A4_Lantai_2.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A4_Lantai_2.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A4_Lantai_2.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="63.977" atv="1.565" linkedscene="scene_a4_ruang_kelas" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="109.253" atv="17.720" linkedscene="scene_a4_lantai_1" />
+
+	</scene>
+
+	<scene name="scene_A4_Ruang_Kelas" title="A4 Ruang Kelas" onstart="" thumburl="panos/A4_Ruang_Kelas.tiles/thumb.jpg" lat="-7.31606389" lng="112.72631111" heading="180.0">
+
+		<view hlookat="248.075" vlookat="-0.988" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A4_Ruang_Kelas.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A4_Ruang_Kelas.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A4_Ruang_Kelas.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="175.324" atv="9.796" linkedscene="scene_a4_lantai_2" />
+
+	</scene>
+
+	<scene name="scene_A5_Lantai_1" title="A5 Lantai 1" onstart="" thumburl="panos/A5_Lantai_1.tiles/thumb.jpg" lat="-7.31594722" lng="112.72638889" heading="315.0">
+
+		<view hlookat="-103.701" vlookat="-0.882" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A5_Lantai_1.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A5_Lantai_1.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A5_Lantai_1.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-105.743" atv="-16.053" linkedscene="scene_a5_lantai_2" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="71.027" atv="12.276" linkedscene="scene_gedung_teknik_elektro" />
+
+	</scene>
+
+	<scene name="scene_A5_Lantai_2" title="A5 Lantai 2" onstart="" thumburl="panos/A5_Lantai_2.tiles/thumb.jpg" lat="-7.31633333" lng="112.72691111" heading="270.0">
+
+		<view hlookat="91.027" vlookat="-1.187" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A5_Lantai_2.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A5_Lantai_2.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A5_Lantai_2.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-64.425" atv="21.307" linkedscene="scene_a5_lantai_1" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-68.279" atv="-17.583" linkedscene="scene_a5_lantai_3" />
+
+	</scene>
+
+	<scene name="scene_A5_Lantai_3" title="A5 Lantai 3" onstart="" thumburl="panos/A5_Lantai_3.tiles/thumb.jpg" lat="-7.31620278" lng="112.72676389" heading="315.0">
+
+		<view hlookat="230.813" vlookat="11.285" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A5_Lantai_3.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A5_Lantai_3.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A5_Lantai_3.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="109.751" atv="8.702" linkedscene="scene_a5_lantai_2" />
+
+	</scene>
+
+	<scene name="scene_A6_Lantai_1" title="A6 Lantai 1" onstart="" thumburl="panos/A6_Lantai_1.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A6_Lantai_1.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A6_Lantai_1.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A6_Lantai_1.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-11.329" atv="4.691" linkedscene="scene_gedung_teknik_mesin" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-138.466" atv="-14.143" linkedscene="scene_a6_lantai_2" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="169.625" atv="5.940" linkedscene="scene_depan_gedung_a7" />
+
+	</scene>
+
+	<scene name="scene_A6_Lantai_2" title="A6 Lantai 2" onstart="" thumburl="panos/A6_Lantai_2.tiles/thumb.jpg" lat="-7.31677500" lng="112.72647778" heading="112.5">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A6_Lantai_2.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A6_Lantai_2.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A6_Lantai_2.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="61.367" atv="24.367" linkedscene="scene_a6_lantai_1" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="162.609" atv="8.039" linkedscene="scene_a6_ruang_rapat" />
+
+	</scene>
+
+	<scene name="scene_A6_Ruang_Rapat" title="A6 Ruang Rapat" onstart="" thumburl="panos/A6_Ruang_Rapat.tiles/thumb.jpg" lat="-7.31649167" lng="112.72658889" heading="112.5">
+
+		<view hlookat="265.145" vlookat="12.249" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A6_Ruang_Rapat.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A6_Ruang_Rapat.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A6_Ruang_Rapat.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-55.883" atv="11.426" linkedscene="scene_a6_lantai_2" />
+
+	</scene>
+
+	<scene name="scene_A7_Lab_RPL" title="A7 Lab RPL" onstart="" thumburl="panos/A7_Lab_RPL.tiles/thumb.jpg" lat="-7.31657500" lng="112.72641667" heading="112.5">
+
+		<view hlookat="-173.233" vlookat="-5.884" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A7_Lab_RPL.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A7_Lab_RPL.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A7_Lab_RPL.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="71.225" atv="3.306" linkedscene="scene_a7_lantai_2" />
+
+	</scene>
+
+	<scene name="scene_A7_Lantai_1" title="A7 Lantai 1" onstart="" thumburl="panos/A7_Lantai_1.tiles/thumb.jpg" lat="-7.31683889" lng="112.72654722" heading="112.5">
+
+		<view hlookat="105.421" vlookat="11.307" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A7_Lantai_1.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A7_Lantai_1.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A7_Lantai_1.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="107.900" atv="0.848" linkedscene="scene_gazebo_a8" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="107.030" atv="-16.525" linkedscene="scene_a7_lantai_2" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="-72.263" atv="7.081" linkedscene="scene_depan_gedung_a7" />
+
+	</scene>
+
+	<scene name="scene_A7_Lantai_2" title="A7 Lantai 2" onstart="" thumburl="panos/A7_Lantai_2.tiles/thumb.jpg" lat="-7.31687778" lng="112.72659444" heading="135.0">
+
+		<view hlookat="162.700" vlookat="1.672" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A7_Lantai_2.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A7_Lantai_2.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A7_Lantai_2.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="136.377" atv="33.342" linkedscene="scene_a7_lantai_1" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="245.313" atv="7.508" linkedscene="scene_a7_lab_rpl" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="132.517" atv="-31.998" linkedscene="scene_a7_lantai_3" />
+
+	</scene>
+
+	<scene name="scene_A7_Lantai_3" title="A7 Lantai 3" onstart="" thumburl="panos/A7_Lantai_3.tiles/thumb.jpg" lat="-7.31685000" lng="112.72666389" heading="292.5">
+
+		<view hlookat="-31.760" vlookat="-3.027" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A7_Lantai_3.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A7_Lantai_3.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A7_Lantai_3.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-145.808" atv="9.153" linkedscene="scene_a7_ruang_kelas" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="0.136" atv="21.709" linkedscene="scene_a7_lantai_2" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="-81.763" atv="10.966" linkedscene="scene_a8_lantai_2" />
+
+	</scene>
+
+	<scene name="scene_A7_Ruang_Kelas" title="A7 Ruang Kelas" onstart="" thumburl="panos/A7_Ruang_Kelas.tiles/thumb.jpg" lat="-7.31691667" lng="112.72660278" heading="67.5">
+
+		<view hlookat="-47.740" vlookat="1.549" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A7_Ruang_Kelas.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A7_Ruang_Kelas.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A7_Ruang_Kelas.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-77.029" atv="2.238" linkedscene="scene_a7_lantai_3" />
+
+	</scene>
+
+	<scene name="scene_A8_Lantai_2" title="A8 Lantai 2" onstart="" thumburl="panos/A8_Lantai_2.tiles/thumb.jpg" lat="-7.31706389" lng="112.72632500" heading="112.5">
+
+		<view hlookat="-20.965" vlookat="4.457" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A8_Lantai_2.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A8_Lantai_2.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A8_Lantai_2.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-90.871" atv="1.308" linkedscene="scene_a7_lantai_2" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-87.516" atv="-29.081" linkedscene="scene_a7_lantai_3" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="-179.425" atv="22.167" linkedscene="scene_gazebo_a8" />
+		<hotspot name="spot4" style="skin_hotspotstyle" ath="93.599" atv="-1.559" linkedscene="scene_tangga_a8" />
+		<hotspot name="spot5" style="skin_hotspotstyle" ath="176.861" atv="-8.748" linkedscene="scene_a8_lantai_3" />
+
+	</scene>
+
+	<scene name="scene_A8_Lantai_3" title="A8 Lantai 3" onstart="" thumburl="panos/A8_Lantai_3.tiles/thumb.jpg" lat="-7.31695278" lng="112.72637222" heading="112.5">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/A8_Lantai_3.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/A8_Lantai_3.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/A8_Lantai_3.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+
+	</scene>
+
+	<scene name="scene_Fakultas_Lantai_1" title="Fakultas Lantai 1" onstart="" thumburl="panos/Fakultas_Lantai_1.tiles/thumb.jpg" lat="-7.31568056" lng="112.72677778" heading="22.5">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Fakultas_Lantai_1.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Fakultas_Lantai_1.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Fakultas_Lantai_1.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-18.508" atv="3.166" linkedscene="scene_gedung_fakultas_depan" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="163.356" atv="4.158" linkedscene="scene_gedung_fakultas_teknik" />
+		<hotspot name="spot3" style="skin_hotspotstyle" ath="-3.772" atv="-11.026" linkedscene="scene_fakultas_lantai_2" />
+
+	</scene>
+
+	<scene name="scene_Fakultas_Lantai_2" title="Fakultas Lantai 2" onstart="" thumburl="panos/Fakultas_Lantai_2.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="94.664" vlookat="3.924" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Fakultas_Lantai_2.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Fakultas_Lantai_2.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Fakultas_Lantai_2.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="64.525" atv="-1.616" linkedscene="scene_fakultas_lantai_3" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="175.643" atv="11.126" linkedscene="scene_fakultas_lantai_1" />
+
+	</scene>
+
+	<scene name="scene_Fakultas_Lantai_3" title="Fakultas Lantai 3" onstart="" thumburl="panos/Fakultas_Lantai_3.tiles/thumb.jpg" lat="-7.31564167" lng="112.72690556" heading="270.0">
+
+		<view hlookat="191.284" vlookat="14.520" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Fakultas_Lantai_3.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Fakultas_Lantai_3.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Fakultas_Lantai_3.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="48.722" atv="0.853" linkedscene="scene_fakultas_lantai_2" />
+
+	</scene>	
+
+
+</krpano>

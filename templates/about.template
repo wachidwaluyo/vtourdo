@@ -1,0 +1,16 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-2 animated fadeInLeft">
+			<img class="img-responsive img-rounded center-block" src="dist/images/wachid_350x450.png" alt="Wachid Mudi Waluyo" style="height: 400px">
+		</div>
+		<div class="col-md-4 animated fadeInRight">
+			<h2>Tentang Pembuat</h2>
+			<ul class="list-unstyled">
+				<li><h4>Nama: Wachid Mudi Waluyo</h4></li>
+				<li><h4>NIM: 13050974073</h4></li>
+				<li><h4>Jurusan: Teknik Informatika</h4></li>
+				<li><h4>Prodi: Pendidikan Teknik Informatika</h4></li>
+			</ul>
+		</div>
+	</div>
+</div>

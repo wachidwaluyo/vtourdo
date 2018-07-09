@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Gedung Fakultas Teknik",
+    "url": "Fakultas_Lantai_1.tiles/mobile_f.jpg"
+  },
+  {
+    "title": "Teknik Informatika Lantai 1",
+    "url": "A1_Lantai_1.tiles/mobile_f.jpg"
+  },
+  {
+    "title": "PKK Lantai 1",
+    "url": "A3_Lantai_1.tiles/mobile_f.jpg"
+  },
+  {
+    "title": "Teknik Sipil Lantai 1",
+    "url": "A4_Lantai_1.tiles/mobile_f.jpg"
+  },
+  {
+    "title": "Teknik Elektro Lantai 1",
+    "url": "A5_Lantai_1.tiles/mobile_f.jpg"
+  },
+  {
+    "title": "Teknik Mesin Lantai 1",
+    "url": "A6_Lantai_1.tiles/mobile_f.jpg"
+  } 
+]

@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="powr-hit-counter" id="e61ab8e0_1523934091"></div>
+    </div>
+    <div class="col-md-6">
+      <div class="powr-poll" id="98841c8c_1523937085"></div>
+    </div>
+  </div>
+</div>
+<script src="//www.powr.io/powr.js?external-type=html"></script> 
