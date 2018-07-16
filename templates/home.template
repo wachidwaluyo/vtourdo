@@ -5,7 +5,7 @@
 <div class="jumbotron">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-md-push-0 col-xs-8 col-xs-push-2 text-center">
+            <div class="col-md-12 col-sm-8 col-sm-push-0 col-xs-8 col-xs-push-2 text-center">
                 <h1 class="text-left animated fadeInDownBig">
                     Virtual Tour
                 </h1>
@@ -16,6 +16,7 @@
                     </strong>
                 </h2>
             </div>
+            <div class="clearfix"></div>
             <div class="col-md-3 col-sm-4 col-sm-push-0 col-xs-8 col-xs-push-2">
                 <div class="boxes-rounded boxes-colored animated zoomInDown">
                     <a href="/vtour/tour.html" role="button">

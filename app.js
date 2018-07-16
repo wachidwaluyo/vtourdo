@@ -42,10 +42,15 @@
             context.app.swap('');
             context.render('templates/panorama.template', {}).appendTo(context.$element());
             $.each(this.items, function(i, item) {
+                var url  = item.url;
+                var slug = url.substring(0, url.length - 19);
+                
                 context.render('templates/list.template', {
                     id: i,
-                    item: item
+                    item: item,
+                    slug: slug
                 }).appendTo('#data');
+                //console.log(item);
             });
             $.each(this.items2, function(i, item) {
                 context.render('templates/list2.template', {

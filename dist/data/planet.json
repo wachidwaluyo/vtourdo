@@ -1,26 +1,32 @@
 [
   {
     "title": "Fakultas Teknik",
-    "name": "fteknik.jpg"
+    "name": "fteknik.jpg",
+    "url": "Gedung_Fakultas_Teknik"
   },
   {
     "title": "Teknik Informatika",
-    "name": "tinformatika.jpg"
+    "name": "tinformatika.jpg",
+    "url": "Gedung_Teknik_Informatika"
   },
   {
     "title": "PKK",
-    "name": "pkk.jpg"
+    "name": "pkk.jpg",
+    "url": "Gedung_Teknik_Informatika"
   },
   {
     "title": "Teknik Sipil",
-    "name": "tsipil.jpg"
+    "name": "tsipil.jpg",
+    "url": "Gedung_PKK"
   },
   {
     "title": "Teknik Elektro",
-    "name": "telektro.jpg"
+    "name": "telektro.jpg",
+    "url": "Gedung_Teknik_Elektro"
   },
   {
     "title": "Teknik Mesin",
-    "name": "tmesin.jpg"
+    "name": "tmesin.jpg",
+    "url": "Gedung_Teknik_Mesin"
   }   
 ]
