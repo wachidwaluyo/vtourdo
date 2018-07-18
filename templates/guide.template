@@ -43,7 +43,7 @@
                 <li>
                     <ol>
                         <li>
-                            Kemudian buka halaman utama dengan mengklik menu "Home" atau klik
+                            Buka halaman utama dengan mengklik menu "Home" atau klik
                             <a class="btn-link" href="/">
                                 disini
                             </a>
@@ -55,6 +55,9 @@
                             Kemudian anda akan secara otomatis diarahkan ke Virtual Tour UNESA
                         </li>
                     </ol>
+                </li>
+                <li style="padding-top: 20px;">
+                    Note* Jika anda tidak bisa mengakses virtual tour, silahkan pergi ke bagian pengaturan <a class="btn-link" href="#setting">disini</a>
                 </li>
             </ul>
         </div>
@@ -75,11 +78,11 @@
             <ol>
                 <li>
                     Klik menu setting pada browser chrome, pada bagian pojok kanan atas
-                    <img src="dist/images/settings/chrome_set.png" alt="Setting"/>
+                    <img class="img-responsive" src="dist/images/settings/chrome_set.png" alt="Setting"/>
                 </li>
                 <li>
                     Kemudian pilih "Help" dan pilih "About Google Chrome"
-                    <img src="dist/images/settings/chrome_set_about.png" alt="Setting"/>
+                    <img class="img-responsive" style="padding-top: 10px; display: inline-block;" src="dist/images/settings/chrome_set_about.png" alt="Setting"/>
                 </li>
             </ol>
             <span>
@@ -90,11 +93,12 @@
             <ol>
                 <li>
                     Klik menu setting pada browser firefox, pada bagian pojok kanan atas
-                    <img src="dist/images/settings/chrome_set.png" alt="Setting"/>
+                    <img class="img-responsive" src="dist/images/settings/firefox_set.png" alt="Setting"/>
                 </li>
                 <li>
                     Kemudian pilih "Help" dan pilih "About Mozilla Firefox"
-                    <img src="dist/images/settings/chrome_set_about.png" alt="Setting"/>
+                    <img class="img-responsive" style="padding-top: 10px; display: inline-block;" src="dist/images/settings/firefox_set_help.png" alt="Setting"/>
+                    <img class="img-responsive" style="padding-top: 10px; display: inline-block;" src="dist/images/settings/firefox_set_about.png" alt="Setting"/>
                 </li>
             </ol>            
             <h4>
@@ -139,8 +143,8 @@
                     </a>
                 </li>
                 <li>
-                    Jika Google Chrome anda "up to date" maka tidak perlu menginstall flash atau bisa juga download Mozilla Firefox
-                    <a class="btn-link" href="#">
+                    Jika Google Chrome anda "up to date" maka tidak perlu menginstall flash atau bisa juga download Google Chrome 
+                    <a class="btn-link" href="https://www.google.com/chrome/">
                         disini
                     </a>
                 </li>
@@ -157,8 +161,8 @@
                     </a>
                 </li>
                 <li>
-                    Jika Mozilla Firefox anda "up to date" maka tidak perlu menginstall flash atau bisa juga download Google Chrome
-                    <a class="btn-link" href="#">
+                    Jika Mozilla Firefox anda "up to date" maka tidak perlu menginstall flash atau bisa juga download Mozilla Firefox
+                    <a class="btn-link" href="https://www.mozilla.org/en-US/firefox/new/">
                         disini
                     </a>
                 </li>

@@ -176,6 +176,9 @@ body {
     padding-top: 5em;
     padding-bottom: 5em;
 }
+.guide li {
+    font-size: 16px;
+}
 .course .row h1, .text-center {
     font-family: "Raleway", "Helvetica Neue", Helvetica, sans-serif;
 }
@@ -423,6 +426,9 @@ body {
     }
     .wrapper {
         max-width: 80%;
+    }
+    .guide .img-responsive {
+        display: block !important;
     }
 }
 @media (max-width: 380px) {
