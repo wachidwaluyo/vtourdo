@@ -49,15 +49,29 @@
                             </a>
                         </li>
                         <li>
-                            Klik tombol "PLAY", <a href="http://127.0.0.1:8080/vtour/tour.html"><img style="max-width: 100px;" src="dist/images/play_guide.png" alt="Play"></a>
+                            Klik tombol "PLAY", <a href="/vtour/tour.html"><img style="max-width: 100px;" src="dist/images/play_guide.png" alt="Play"></a>
                         </li>
                         <li>
-                            Kemudian anda akan secara otomatis diarahkan ke Virtual Tour UNESA
+                            Kemudian anda akan secara otomatis diarahkan ke Virtual Tour Fakultas Teknik UNESA
                         </li>
                     </ol>
                 </li>
-                <li style="padding-top: 20px;">
-                    Note* Jika anda tidak bisa mengakses virtual tour, silahkan pergi ke bagian pengaturan <a class="btn-link" href="#setting">disini</a>
+                <li style="padding-top: 20px; padding-bottom: 20px;">
+                    Note* Jika anda tidak bisa mengakses virtual tour, silahkan pergi ke bagian pengaturan <a class="btn-link" href="#setting">disini</a>. Secara default virtual tour menggunakan html5 sebagai viewer nya, karenanya pengguna seharusnya bisa mengakses virtual tour meski tanpa flash aktif. Untuk dapat merasakan fitur virtual toru secara penuh tetap harus menggunakan flash, maka setelah masuk ke virtual tour lakukkan langkah berikut:
+                </li>
+                <li>
+                    <ol>
+                        <li>
+                            Klik pada ikon "View site information" (contoh pada browser chrome), panah 1 <img class="img-responsive" src="dist/images/settings/flash_1.png" alt="Site information">
+                        </li>
+                        <li>Kemudian klik "Site settings", panah 2.</li>
+                        <li>
+                            Setelah itu anda akan diarahakan pada halaman Site settings, <img class="img-responsive" src="dist/images/settings/flash_2.png" alt="Flash setting"> pada bagian "Flash" pilih "Ask (default)" menjadi "Allow".
+                        </li>
+                        <li>
+                            Terakhir pindah kembali ke tab virtual tour dan anda akan melihat alert seperti dibawah ini kemudian klik "Reload".<img class="img-responsive" src="dist/images/settings/flash_3.png" alt="Site information">
+                        </li>
+                    </ol>
                 </li>
             </ul>
         </div>

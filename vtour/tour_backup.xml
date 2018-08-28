@@ -178,7 +178,7 @@
 		tween(view.hlookat, get(new_hlookat), distance(100,0.8));
 	</action>	
 
-	<scene name="scene_Gedung_Fakultas_Teknik" title="Gedung Fakultas Teknik" thumburl="panos/Gedung_Fakultas_Teknik.tiles/thumb.jpg" lat="-7.31587500" lng="112.72693611" heading="180.0">
+	<scene name="scene_Gedung_Fakultas_Teknik" title="Gedung Fakultas Teknik" onstart="playsound(xxx, music/fakultasNew.mp3, 1);" thumburl="panos/Gedung_Fakultas_Teknik.tiles/thumb.jpg" lat="-7.31587500" lng="112.72693611" heading="180.0" onremovepano="stopsound(xxx);">
 
 		<view hlookat="-185.270" vlookat="-7.751" fovtype="MFOV" fov="70.000" maxpixelzoom="4.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -260,7 +260,7 @@
 
 	</scene>
 
-	<scene name="scene_Depan_Gedung_A7" title="Depan Gedung A7" onstart="" thumburl="panos/Depan_Gedung_A7.tiles/thumb.jpg" lat="-7.31676389" lng="112.72655556" heading="22.5">
+	<scene name="scene_Depan_Gedung_A7" title="Depan Gedung A7" onstart="playsound(a7, music/a7New.mp3, 1);" thumburl="panos/Depan_Gedung_A7.tiles/thumb.jpg" lat="-7.31676389" lng="112.72655556" heading="22.5">
 
 		<view hlookat="195.282" vlookat="0.784" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -328,7 +328,7 @@
 
 	</scene>
 
-	<scene name="scene_Gazebo_Sipil" title="Gazebo Sipil" onstart="" thumburl="panos/Gazebo_Sipil.tiles/thumb.jpg" lat="-7.31645556" lng="112.72620278" heading="112.5">
+	<scene name="scene_Gazebo_Sipil" title="Gazebo Sipil" onstart="playsound(a4, music/a4New.mp3, 1);" thumburl="panos/Gazebo_Sipil.tiles/thumb.jpg" lat="-7.31645556" lng="112.72620278" heading="112.5">
 
 		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -372,7 +372,7 @@
 
 	</scene>
 
-	<scene name="scene_Gedung_Informatika_Lama_" title="Gedung Informatika Lama " onstart="" thumburl="panos/Gedung_Informatika_Lama_.tiles/thumb.jpg" lat="-7.31621667" lng="112.72560000" heading="112.5">
+	<scene name="scene_Gedung_Informatika_Lama_" title="Gedung Informatika Lama " onstart="playsound(b1, music/b1New.mp3, 1);" thumburl="panos/Gedung_Informatika_Lama_.tiles/thumb.jpg" lat="-7.31621667" lng="112.72560000" heading="112.5">
 
 		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -391,7 +391,7 @@
 
 	</scene>
 
-	<scene name="scene_Gedung_PKK" title="Gedung PKK" onstart="" thumburl="panos/Gedung_PKK.tiles/thumb.jpg" lat="-7.31646111" lng="112.72599444" heading="202.5">
+	<scene name="scene_Gedung_PKK" title="Gedung PKK" onstart="playsound(a3a2, music/a3a2New.mp3, 1);" thumburl="panos/Gedung_PKK.tiles/thumb.jpg" lat="-7.31646111" lng="112.72599444" heading="202.5">
 
 		<view hlookat="-131.006" vlookat="2.172" fovtype="MFOV" fov="115.187" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -412,7 +412,7 @@
 
 	</scene>
 
-	<scene name="scene_Gedung_Teknik_Elektro" title="Gedung Teknik Elektro" onstart="" thumburl="panos/Gedung_Teknik_Elektro.tiles/thumb.jpg" lat="-7.31617222" lng="112.72698611" heading="225.0">
+	<scene name="scene_Gedung_Teknik_Elektro" title="Gedung Teknik Elektro" onstart="playsound(a5, music/a5New.mp3, 1);" onremovepano="pausesound(a5);" thumburl="panos/Gedung_Teknik_Elektro.tiles/thumb.jpg" lat="-7.31617222" lng="112.72698611" heading="225.0">
 
 		<view hlookat="-387.732" vlookat="-3.483" fovtype="MFOV" fov="121.315" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -433,7 +433,7 @@
 
 	</scene>
 
-	<scene name="scene_Gedung_Teknik_Informatika" title="Gedung Teknik Informatika" onstart="" thumburl="panos/Gedung_Teknik_Informatika.tiles/thumb.jpg" lat="-7.31705000" lng="112.72593889" heading="292.5">
+	<scene name="scene_Gedung_Teknik_Informatika" title="Gedung Teknik Informatika" onstart="playsound(a1, music/a1New.mp3, 1);" thumburl="panos/Gedung_Teknik_Informatika.tiles/thumb.jpg" lat="-7.31705000" lng="112.72593889" heading="292.5">
 
 		<view hlookat="166.210" vlookat="-4.364" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -453,7 +453,7 @@
 
 	</scene>
 
-	<scene name="scene_Gedung_Teknik_Mesin" title="Gedung Teknik Mesin" onstart="" thumburl="panos/Gedung_Teknik_Mesin.tiles/thumb.jpg" lat="-7.31633611" lng="112.72668611" heading="22.5">
+	<scene name="scene_Gedung_Teknik_Mesin" title="Gedung Teknik Mesin" onstart="playsound(a6, music/a6New.mp3, 1);" thumburl="panos/Gedung_Teknik_Mesin.tiles/thumb.jpg" lat="-7.31633611" lng="112.72668611" heading="22.5">
 
 		<view hlookat="169.987" vlookat="-0.609" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 

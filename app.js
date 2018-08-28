@@ -15,32 +15,32 @@
         });
         this.get('#/', function(context) {
             context.app.swap('');
-            context.render('templates/home.template', {}).appendTo(context.$element());
+            context.render('templates/home.template').appendTo(context.$element());
         });
         this.get('#/about', function(context) {
             var str = location.href.toLowerCase();
             context.app.swap('');
-            context.render('templates/about.template', {}).appendTo(context.$element());
+            context.render('templates/about.template').appendTo(context.$element());
         });
         this.get('#/jurusan', function(context) {
             var str = location.href.toLowerCase();
             context.app.swap('');
-            context.render('templates/course.template', {}).appendTo(context.$element());
+            context.render('templates/course.template').appendTo(context.$element());
         });
         this.get('#/petunjuk', function(context) {
             var str = location.href.toLowerCase();
             context.app.swap('');
-            context.render('templates/guide.template', {}).appendTo(context.$element());
+            context.render('templates/guide.template').appendTo(context.$element());
         });
         this.get('#/stat_poll', function(context) {
             var str = location.href.toLowerCase();
             context.app.swap('');
-            context.render('templates/stat_poll.template', {}).appendTo(context.$element());
+            context.render('templates/stat_poll.template').appendTo(context.$element());
         });
         this.get('#/panorama', function(context) {
             var str = location.href.toLowerCase();
             context.app.swap('');
-            context.render('templates/panorama.template', {}).appendTo(context.$element());
+            context.render('templates/panorama.template').appendTo(context.$element());
             $.each(this.items, function(i, item) {
                 var url  = item.url;
                 var slug = url.substring(0, url.length - 19);
