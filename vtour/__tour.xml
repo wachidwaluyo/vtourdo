@@ -178,7 +178,7 @@
 		tween(view.hlookat, get(new_hlookat), distance(100,0.8));
 	</action>	
 
-	<scene name="scene_Gedung_Fakultas_Teknik" title="Gedung Fakultas Teknik" onstart="playsound(xxx, music/fakultasNew.mp3, 1);" thumburl="panos/Gedung_Fakultas_Teknik.tiles/thumb.jpg" lat="-7.31587500" lng="112.72693611" heading="180.0" onremovepano="stopsound(xxx);">
+	<scene name="scene_Gedung_Fakultas_Teknik" title="Gedung Fakultas Teknik" onstart="playsound(xxx, music/fakultasNew.mp3, 1);" thumburl="panos/Gedung_Fakultas_Teknik.tiles/thumb.jpg" lat="-7.31587500" lng="112.72693611" heading="180.0" onover="stopsound(xxx);">
 
 		<view hlookat="-185.270" vlookat="-7.751" fovtype="MFOV" fov="70.000" maxpixelzoom="4.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -1114,7 +1114,7 @@
 
 	</scene>
 
-	<scene name="scene_Fakultas_Lantai_1" title="Fakultas Lantai 1" onstart="" thumburl="panos/Fakultas_Lantai_1.tiles/thumb.jpg" lat="-7.31568056" lng="112.72677778" heading="22.5">
+	<scene name="scene_Fakultas_Lantai_1" title="Fakultas Lantai 1" onstart="stopallsound();" thumburl="panos/Fakultas_Lantai_1.tiles/thumb.jpg" lat="-7.31568056" lng="112.72677778" heading="22.5">
 
 		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 

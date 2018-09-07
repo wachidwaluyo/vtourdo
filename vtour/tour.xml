@@ -284,7 +284,7 @@
 
 	</scene>
 
-	<scene name="scene_Depan_Gedung_A8" title="Depan Gedung A8" onstart="" thumburl="panos/Depan_Gedung_A8.tiles/thumb.jpg" lat="-7.31701389" lng="112.72607500" heading="202.5">
+	<scene name="scene_Depan_Gedung_A8" title="Depan Gedung A8" onstart="" thumburl="panos/Depan_Gedung_A8.tiles/thumb.jpg" lat="-7.31751400" lng="112.72624100" heading="202.5">
 
 		<view hlookat="-171.553" vlookat="-7.211" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -351,7 +351,7 @@
 
 	</scene>
 
-	<scene name="scene_Gedung_Fakultas_Depan" title="Gedung Fakultas Depan" onstart="" thumburl="panos/Gedung_Fakultas_Depan.tiles/thumb.jpg" lat="-7.31546667" lng="112.72730000" heading="180.0">
+	<scene name="scene_Gedung_Fakultas_Depan" title="Gedung Fakultas Depan" onstart="" thumburl="panos/Gedung_Fakultas_Depan.tiles/thumb.jpg" lat="-7.31553700" lng="112.72701700" heading="180.0">
 
 		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -372,7 +372,7 @@
 
 	</scene>
 
-	<scene name="scene_Gedung_Informatika_Lama_" title="Gedung Informatika Lama " onstart="" thumburl="panos/Gedung_Informatika_Lama_.tiles/thumb.jpg" lat="-7.31621667" lng="112.72560000" heading="112.5">
+	<scene name="scene_Gedung_Informatika_Lama_" title="Gedung Informatika Lama " onstart="" thumburl="panos/Gedung_Informatika_Lama_.tiles/thumb.jpg" lat="-7.31626700" lng="112.72550500" heading="112.5">
 
 		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -391,7 +391,7 @@
 
 	</scene>
 
-	<scene name="scene_Gedung_PKK" title="Gedung PKK" onstart="" thumburl="panos/Gedung_PKK.tiles/thumb.jpg" lat="-7.31646111" lng="112.72599444" heading="202.5">
+	<scene name="scene_Gedung_PKK" title="Gedung PKK" onstart="" thumburl="panos/Gedung_PKK.tiles/thumb.jpg" lat="-7.31668500" lng="112.72569400" heading="202.5">
 
 		<view hlookat="-131.006" vlookat="2.172" fovtype="MFOV" fov="115.187" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -433,8 +433,8 @@
 
 	</scene>
 
-	<scene name="scene_Gedung_Teknik_Informatika" title="Gedung Teknik Informatika" onstart="" thumburl="panos/Gedung_Teknik_Informatika.tiles/thumb.jpg" lat="-7.31705000" lng="112.72593889" heading="292.5">
-
+	<scene name="scene_Gedung_Teknik_Informatika" title="Gedung Teknik Informatika" onstart="" thumburl="panos/Gedung_Teknik_Informatika.tiles/thumb.jpg" lat="-7.31710200" lng="112.72544400" heading="292.5">
+		
 		<view hlookat="166.210" vlookat="-4.364" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/Gedung_Teknik_Informatika.tiles/preview.jpg" />
@@ -553,7 +553,7 @@
 
 	</scene>
 
-	<scene name="scene_Parkir_Fakultas" title="Parkir Fakultas" onstart="" thumburl="panos/Parkir_Fakultas.tiles/thumb.jpg" lat="-7.31558889" lng="112.72704722" heading="22.5">
+	<scene name="scene_Parkir_Fakultas" title="Parkir Fakultas" onstart="" thumburl="panos/Parkir_Fakultas.tiles/thumb.jpg" lat="-7.31536100" lng="112.72677700" heading="22.5">
 
 		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -612,7 +612,7 @@
 
 	</scene>
 
-	<scene name="scene_Parkir_Pegawai_Karyawan" title="Parkir Pegawai Karyawan" onstart="" thumburl="panos/Parkir_Pegawai_Karyawan.tiles/thumb.jpg" lat="-7.31700000" lng="112.72631667" heading="45.0">
+	<scene name="scene_Parkir_Pegawai_Karyawan" title="Parkir Pegawai Karyawan" onstart="" thumburl="panos/Parkir_Pegawai_Karyawan.tiles/thumb.jpg" lat="-7.31701389" lng="112.72607500" heading="45.0">
 
 		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -657,7 +657,7 @@
 
 	<!-- Second Panos -->
 
-	<scene name="scene_A1_Lantai_1" title="A1 Lantai 1" onstart="" thumburl="panos/A1_Lantai_1.tiles/thumb.jpg" lat="-7.31765000" lng="112.72534167" heading="225.0">
+	<scene name="scene_A1_Lantai_1" title="A1 Lantai 1" onstart="" thumburl="panos/A1_Lantai_1.tiles/thumb.jpg" lat="-7.31719000" lng="112.72571300" heading="225.0">
 
 		<view hlookat="127.092" vlookat="9.523" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -734,7 +734,7 @@
 
 	</scene>
 
-	<scene name="scene_A1_Ruang_Kelas_3" title="A1 Ruang Kelas 3" onstart="" thumburl="panos/A1_Ruang_Kelas_3.tiles/thumb.jpg" lat="-7.31682500" lng="112.72539167" heading="135.0">
+	<scene name="scene_A1_Ruang_Kelas_3" title="A1 Ruang Kelas 3" onstart="" thumburl="panos/A1_Ruang_Kelas_3.tiles/thumb.jpg" lat="-7.31732400" lng="112.72619300" heading="135.0">
 
 		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -770,7 +770,7 @@
 
 	</scene>
 
-	<scene name="scene_A3_Lantai_1" title="A3 Lantai 1" onstart="" thumburl="panos/A3_Lantai_1.tiles/thumb.jpg" lat="" lng="" heading="">
+	<scene name="scene_A3_Lantai_1" title="A3 Lantai 1" onstart="" thumburl="panos/A3_Lantai_1.tiles/thumb.jpg" lat="-7.31662900" lng="112.72596000" heading="">
 
 		<view hlookat="86.887" vlookat="-0.197" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -809,8 +809,8 @@
 
 	</scene>
 
-	<scene name="scene_A4_Lantai_1" title="A4 Lantai 1" onstart="" thumburl="panos/A4_Lantai_1.tiles/thumb.jpg" lat="-7.31565833" lng="112.72843333" heading="292.5">
-
+	<scene name="scene_A4_Lantai_1" title="A4 Lantai 1" onstart="" thumburl="panos/A4_Lantai_1.tiles/thumb.jpg" lat="-7.31605056" lng="112.72624833" heading="292.5">
+		
 		<view hlookat="-259.029" vlookat="-10.841" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/A4_Lantai_1.tiles/preview.jpg" />
@@ -866,8 +866,8 @@
 
 	</scene>
 
-	<scene name="scene_A5_Lantai_1" title="A5 Lantai 1" onstart="" thumburl="panos/A5_Lantai_1.tiles/thumb.jpg" lat="-7.31594722" lng="112.72638889" heading="315.0">
-
+	<scene name="scene_A5_Lantai_1" title="A5 Lantai 1" onstart="" thumburl="panos/A5_Lantai_1.tiles/thumb.jpg" lat="-7.31630400" lng="112.72690400" heading="315.0">
+		
 		<view hlookat="-103.701" vlookat="-0.882" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/A5_Lantai_1.tiles/preview.jpg" />
@@ -922,7 +922,7 @@
 
 	</scene>
 
-	<scene name="scene_A6_Lantai_1" title="A6 Lantai 1" onstart="" thumburl="panos/A6_Lantai_1.tiles/thumb.jpg" lat="" lng="" heading="">
+	<scene name="scene_A6_Lantai_1" title="A6 Lantai 1" onstart="" thumburl="panos/A6_Lantai_1.tiles/thumb.jpg" lat="-7.31656300" lng="112.72664900" heading="">
 
 		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -942,7 +942,7 @@
 
 	</scene>
 
-	<scene name="scene_A6_Lantai_2" title="A6 Lantai 2" onstart="" thumburl="panos/A6_Lantai_2.tiles/thumb.jpg" lat="-7.31677500" lng="112.72647778" heading="112.5">
+	<scene name="scene_A6_Lantai_2" title="A6 Lantai 2" onstart="" thumburl="panos/A6_Lantai_2.tiles/thumb.jpg" lat="-7.31652600" lng="112.72660300" heading="112.5">
 
 		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -979,7 +979,7 @@
 
 	</scene>
 
-	<scene name="scene_A7_Lab_RPL" title="A7 Lab RPL" onstart="" thumburl="panos/A7_Lab_RPL.tiles/thumb.jpg" lat="-7.31657500" lng="112.72641667" heading="112.5">
+	<scene name="scene_A7_Lab_RPL" title="A7 Lab RPL" onstart="" thumburl="panos/A7_Lab_RPL.tiles/thumb.jpg" lat="-7.31685000" lng="112.72659200" heading="112.5">
 
 		<view hlookat="-173.233" vlookat="-5.884" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -1114,7 +1114,7 @@
 
 	</scene>
 
-	<scene name="scene_Fakultas_Lantai_1" title="Fakultas Lantai 1" onstart="" thumburl="panos/Fakultas_Lantai_1.tiles/thumb.jpg" lat="-7.31568056" lng="112.72677778" heading="22.5">
+	<scene name="scene_Fakultas_Lantai_1" title="Fakultas Lantai 1" onstart="" thumburl="panos/Fakultas_Lantai_1.tiles/thumb.jpg" lat="-7.31569500" lng="112.72697100" heading="22.5">
 
 		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -1134,7 +1134,7 @@
 
 	</scene>
 
-	<scene name="scene_Fakultas_Lantai_2" title="Fakultas Lantai 2" onstart="" thumburl="panos/Fakultas_Lantai_2.tiles/thumb.jpg" lat="" lng="" heading="">
+	<scene name="scene_Fakultas_Lantai_2" title="Fakultas Lantai 2" onstart="" thumburl="panos/Fakultas_Lantai_2.tiles/thumb.jpg" lat="-7.31567100" lng="112.72704700" heading="">
 
 		<view hlookat="94.664" vlookat="3.924" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
