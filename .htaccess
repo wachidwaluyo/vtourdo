@@ -3,7 +3,7 @@
 
 	#Mencegah Hot Linking
 	#RewriteCond %{HTTP_REFERER} !^$
-	#RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?namadomainanda.com [NC]
+	#RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?ftunesa.me [NC]
 	#RewriteRule \.(jpg|jpeg|png|gif|mp3)$ - [NC,F,L]
 </IfModule>
 

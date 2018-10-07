@@ -24,7 +24,7 @@
 
 	<!-- Bing Maps configuration -->
 	<skin_settings bingmaps="true"
-	               bingmaps_key="AiocgVKUXUkeP-GRDM2pmJ3vIoSdIePjdwoypaelPQaxtR0GRamNgQsyIgFNsnzX"
+	               bingmaps_key="AnXR1jyAcvCfdryTuSGpzBlU67u5Mgp6o1SJh0cVsBF14Xg7IpNMK8-ZTLFa10dv"
 	               bingmaps_zoombuttons="true"
 	               gyro="true"
 	               thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160"
