@@ -1,57 +1,41 @@
 <div class="container text-center course  animated fadeIn">
 	<div class="row">
-		<h1><strong>Jurusan di Fakultas Teknik</strong></h1>
-		<h4 class="text-muted" style="letter-spacing: 1px; line-height: 25px;">
-			<strong>
-			"Unggul dalam Teknologi dan Pendidikan Kejuruan" - 
-			(Excellent in Technology and Vocational Education) <br>
-			Saat ini terdapat 5 jurusan
-			</strong>
-		</h4>
+		<h1><strong>Jurusan Teknik Informatika</strong></h1>
 		<br>
 		<br>
-		<div class="col-md-4 col-sm-6 col-sm-push-0 col-xs-8 col-xs-push-2">
+		<div class="col-md-3 col-sm-6 col-sm-push-0 col-xs-8 col-xs-push-2">
 			<div class="thumbnail">
-				<h2 class="title">Teknik Elektro</h2>
+				<h3 class="title">Lab Jaringan Komputer</h3>
+				<img class="icon-course img-responsive" src="dist/images/course/jarkom.png" alt="icon">
 				<div class="caption">
-			        <p class="text-muted">MENJADI PRODI YANG UNGGUL  DITINGKAT  ASEAN PADA TAHUN 2025</p>
-			        <a href="http://elektro.ft.unesa.ac.id/" class="btn btn-primary" role="button">KUNJUNGI</a> 
+			        <a href="/vtour/tour.html?startscene=scene_Lab_Jaringan_Komputer" class="btn btn-primary" role="button">KUNJUNGI</a> 
 			    </div>
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-6 col-sm-push-0 col-xs-8 col-xs-push-2">
+		<div class="col-md-3 col-sm-6 col-sm-push-0 col-xs-8 col-xs-push-2">
 			<div class="thumbnail">
-				<h2 class="title">Teknik Informatika</h2>
+				<h3 class="title">Lab Multimedia</h3>
+				<img class="icon-course img-responsive" src="dist/images/course/mm.png" alt="icon">
 				<div class="caption">
-			        <p class="text-muted"><strong>Unggul dalam Pendidikan dan Teknologi Informasi</strong></p>
-			        <a href="http://if.unesa.ac.id/" class="btn btn-primary" role="button">KUNJUNGI</a> 
+			        <a href="/vtour/tour.html?startscene=scene_Lab_Multimedia" class="btn btn-primary" role="button">KUNJUNGI</a> 
 			    </div>				
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-6 col-sm-push-0 col-xs-8 col-xs-push-2">
+		<div class="col-md-3 col-sm-6 col-sm-push-0 col-xs-8 col-xs-push-2">
 			<div class="thumbnail">
-				<h2 class="title">Teknik Mesin</h2>
+				<h3 class="title">Lab Rekayasa Perangkat Lunak</h3>
+				<img class="icon-course img-responsive" src="dist/images/course/rpl.png" alt="icon">
 				<div class="caption">
-			        <p class="text-muted"><strong>Tahun 2020 Prodi S-1PTM FT UNESA Unggul dalam Pendidikan Teknik Mesin berbasis penelitian, berkarakter, berjiwa wirausaha, beriman dan bertaqwa.</strong></p>
-			        <a href="http://ptmunesa.blogspot.co.id/" class="btn btn-primary" role="button">KUNJUNGI</a> 
+			        <a href="/vtour/tour.html?startscene=scene_A7_Lab_RPL" class="btn btn-primary" role="button">KUNJUNGI</a> 
 			    </div>				
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-6 col-sm-push-0 col-xs-8 col-xs-push-2">
+		<div class="col-md-3 col-sm-6 col-sm-push-0 col-xs-8 col-xs-push-2">
 			<div class="thumbnail">
-				<h2 class="title">Teknik PKK</h2>
+				<h3 class="title">Lab Sistem Informasi</h3>
+				<img class="icon-course img-responsive" src="dist/images/course/si.png" alt="icon">
 				<div class="caption">
-			        <p class="text-muted"><strong>Pendidikan Kesejahteraan Keluarga</strong></p>
-			        <a href="http://pkk.unesa.ac.id/" class="btn btn-primary" role="button">KUNJUNGI</a> 
-			    </div>				
-			</div>
-		</div>
-		<div class="col-md-4 col-sm-6 col-sm-push-0 col-xs-8 col-xs-push-2">
-			<div class="thumbnail">
-				<h2 class="title">Teknik Sipil</h2>
-				<div class="caption">
-			        <p class="text-muted"><strong>Menghasilkan ahli madya yang tangguh dalam pelaksanaan pekerjaan Teknik Sipil</strong></p>
-			        <a href="http://tekniksipilunesa.org/" class="btn btn-primary" role="button">KUNJUNGI</a> 
+			        <a href="/vtour/tour.html?startscene=scene_Lab_Sistem_Informasi" class="btn btn-primary" role="button">KUNJUNGI</a> 
 			    </div>				
 			</div>
 		</div>

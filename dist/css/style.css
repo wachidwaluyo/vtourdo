@@ -376,6 +376,9 @@ body {
     transform: translate3d(0, 0, 0);
     opacity: 1;
 }
+.icon-course {
+    max-height: 100px;
+}
 @media (max-width: 991px) {
     .navbar-default .navbar-nav>li a {
         padding-right: 1.2em;

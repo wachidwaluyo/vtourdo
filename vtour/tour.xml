@@ -1,4 +1,4 @@
-<krpano version="1.16" title="Fakultas Teknik" onstart="startup(); playsound(bg, music/live.mp3, 0);">
+<krpano version="1.16" title="Fakultas Teknik" onstart="startup(); playsound(bg, music/live.mp3, 0); js( krpano_is_ready() );">
 
 	<include url="skin/vtourskin.xml" />
 
@@ -52,12 +52,9 @@
 
 	<plugin name="sound-on" url="../dist/images/sound-off.png" devices="!iphone+!ipad" style="button_sound"
     align="leftbottom" x="10" y="100" onhover="showtext(Sound OFF);" visible="false" onclick="set(plugin[soundinterface].mute,false);set(plugin[sound-on].visible,false); set(plugin[sound-off].visible,true); "/>
-		
-
 
 	<!-- set optional skin logo url, opened_onclick="openurl('..',_blank); to view image first then click again to open url" -->
 	<layer name="skin_logo" url="../dist/images/logo.png" scale=".8" onclick="openurl('..',_blank);" align="lefttop" />
-
 
 <!-- 	<action name="startup">
 		if(startscene === null, copy(startscene,scene[0].name));
@@ -192,8 +189,7 @@
 		</image>
 
 		<!-- place your scene hotspots here -->
-		<hotspot name="spot1" style="skin_hotspotstyle" ath="-15.632" atv="-0.428" linkedscene="scene_gedung_teknik_elektro" />
-		
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-15.632" atv="-0.428" linkedscene="scene_gedung_teknik_elektro" />		
 		<hotspot name="spot3" style="skin_hotspotstyle" ath="-100.636" atv="1.809" linkedscene="scene_parkir_mahasiswa_masuk" />
 		<hotspot name="spot4" style="skin_hotspotstyle" ath="53.556" atv="-1.025" linkedscene="scene_gedung_teknik_sipil" />
 		<hotspot name="spot5" style="skin_hotspotstyle" ath="172.663" atv="-1.849" linkedscene="scene_fakultas_lantai_1" />
@@ -994,6 +990,57 @@
 
 		<!-- place your scene hotspots here -->
 		<hotspot name="spot1" style="skin_hotspotstyle" ath="71.225" atv="3.306" linkedscene="scene_a7_lantai_2" />
+
+	</scene>
+
+	<scene name="scene_Lab_Jaringan_Komputer" title="Lab Jaringan Komputer" onstart="" thumburl="panos/Lab_Jaringan_Komputer.tiles/thumb.jpg" lat="-7.31685833" lng="112.72686944" heading="112.5">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Lab_Jaringan_Komputer.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Lab_Jaringan_Komputer.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Lab_Jaringan_Komputer.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+
+	</scene>
+
+	<scene name="scene_Lab_Multimedia" title="Lab Multimedia" onstart="" thumburl="panos/Lab_Multimedia.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Lab_Multimedia.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Lab_Multimedia.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Lab_Multimedia.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
+
+	</scene>
+
+	<scene name="scene_Lab_Sistem_Informasi" title="Lab Sistem Informasi" onstart="" thumburl="panos/Lab_Sistem_Informasi.tiles/thumb.jpg" lat="-7.31685278" lng="112.72655000" heading="112.5">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Lab_Sistem_Informasi.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Lab_Sistem_Informasi.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/Lab_Sistem_Informasi.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<!-- place your scene hotspots here -->
 
 	</scene>
 

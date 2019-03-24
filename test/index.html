@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <title>
+                Test
+            </title>
+            <link href="style.css" rel="stylesheet">
+            </link>
+        </meta>
+    </head>
+    <body>
+    	<aside>
+	        <div id="information">
+				<img class="icon" src="info.svg" alt="Information">
+	            <div id="title">
+	            </div>
+	            <div id="description">
+	            </div>
+	        </div>
+	        <div id="camera-angle">
+	            <ul>
+	                <li>
+	                    <button onclick="moveto(0,-45)">
+	                        High Angle
+	                    </button>
+	                </li>
+	                <li>
+	                    <button onclick="moveto(0,0)">
+	                        Straight Angle
+	                    </button>
+	                </li>
+	                <li>
+	                    <button onclick="moveto(0,+45)">
+	                        Low Angle
+	                    </button>
+	                </li>
+	            </ul>
+	            <img class="icon" src="camera.svg" alt="Camera Angle">
+	        </div>
+        </aside>
+    </body>
+    <script>
+    function ajax_get(url, callback) {
+	    var xmlhttp = new XMLHttpRequest();
+	    xmlhttp.onreadystatechange = function() {
+	        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+	            //console.log('responseText:' + xmlhttp.responseText);
+	            try {
+	                var data = JSON.parse(xmlhttp.responseText);
+	            } catch(err) {
+	                console.log(err.message + " in " + xmlhttp.responseText);
+	                return;
+	            }
+	            callback(data);
+	        }
+	    };
+	 
+	    xmlhttp.open("GET", url, true);
+	    xmlhttp.send();
+	}
+
+	ajax_get('/data.json', function(data) {
+		var title = "Teknik Sipil Lantai 1";
+		// iterate over each element in the array
+		for (var i = 0; i < data.length; i++){
+		  // look for the entry with a matching `title` value
+		  if (data[i].title == title){
+		    // we found it
+		    document.getElementById("title").innerHTML = data[i].title;
+		    document.getElementById("description").innerHTML = data[i].description;
+		  }
+		}
+	});
+    </script>
+</html>

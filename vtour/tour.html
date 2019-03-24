@@ -7,6 +7,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	<link rel="stylesheet" href="../dist/css/pano.css">
 	<style>
 		@-ms-viewport { width: device-width; }
 		@media only screen and (min-device-width: 800px) { html { overflow:hidden; } }
@@ -23,30 +24,58 @@
 
 	  gtag('config', 'UA-117602609-1');
 	</script>
-
+	<!-- <script src="../dist/js/jquery-2.2.0.min.js"></script> -->
 </head>
 <body>
-
-<script src="tour.js"></script>
-
-<div id="pano" style="width:100%;height:100%;">
-	<noscript><table style="width:100%;height:100%;"><tr style="valign:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
-	<script>
-		embedpano({
-			swf:"tour.swf", 
-			xml:"tour.xml", 
-			target:"pano",
-			onready:krpanoReady,
-			html5:"auto",
-			passQueryParameters:true
-		});
-
-		function krpanoReady(krpano)
-		{
-		    krpano.call("trace(krpano is ready...)");
-		}
-	</script>
-</div>
-
+	<script src="tour.js"></script>
+	<div id="pano" style="width:100%;height:100%;">
+		<noscript>
+			<table style="width:100%;height:100%;"><tr style="valign:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table>
+		</noscript>
+		<script src="main.js"></script>
+	</div>
+	<aside>
+        <div id="information">
+			<img class="icon" src="../dist/images/info.svg" alt="Information">
+            <div id="title"></div>
+            <div id="description"></div>
+        </div>
+        <div id="camera-angle">
+            <ul>
+                <li>
+                    <button onclick="moveto_stereo(), message('Stereographic')">
+                        Stereographic
+                    </button>
+                </li>
+                <li>
+                    <button onclick="moveto('bird',+60), message('Bird\'s Eye')">
+                        Bird's Eye
+                    </button>
+                </li>                
+                <li>
+                    <button onclick="moveto('high',+30), message('High Angle')">
+                        High Angle
+                    </button>
+                </li>
+                <li>
+                    <button onclick="moveto('_',0), message('Straight Angle')">
+                        Straight Angle
+                    </button>
+                </li>
+                <li>
+                    <button onclick="moveto('low',-30), message('Low Angle')">
+                        Low Angle
+                    </button>
+                </li>                
+                <li>
+                    <button onclick="moveto('_',-60), message('Worm\'s Eye')">
+                        Worm's Eye
+                    </button>
+                </li>
+            </ul>
+            <img class="icon" src="../dist/images/camera.svg" alt="Camera Angle">
+        </div>
+        <div id="flash-text" style="display: none;"></div>
+    </aside>
 </body>
 </html>

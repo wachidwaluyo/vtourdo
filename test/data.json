@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Gedung Fakultas Teknik",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+  },
+  {
+    "title": "Teknik Informatika Lantai 1",
+    "description": "Et dignissimos dicta modi dolore, perspiciatis error unde."
+  },
+  {
+    "title": "PKK Lantai 1",
+    "description": "Enim eos, cum quisquam!"
+  },
+  {
+    "title": "Teknik Sipil Lantai 1",
+    "description": "Aperiam nesciunt debitis similique nam voluptates quibusdam vitae eveniet aspernatur laudantium hic nihil doloremque, fuga minima reiciendis ab impedit!"
+  },
+  {
+    "title": "Teknik Elektro Lantai 1",
+    "description": "A doloribus quaerat ea, commodi vel porro illo at nisi debitis."
+  },
+  {
+    "title": "Teknik Mesin Lantai 1",
+    "description": "Perferendis, iste, voluptatem. Cupiditate consequatur deleniti hic, in fugiat eligendi corporis pariatur."
+  } 
+]
