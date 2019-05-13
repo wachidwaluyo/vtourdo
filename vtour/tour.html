@@ -43,33 +43,28 @@
         <div id="camera-angle">
             <ul>
                 <li>
-                    <button onclick="moveto_stereo(), message('Stereographic')">
-                        Stereographic
-                    </button>
-                </li>
-                <li>
-                    <button onclick="moveto('bird',+60), message('Bird\'s Eye')">
+                    <button onclick="move_to('bird',+60), message('Bird\'s Eye')">
                         Bird's Eye
                     </button>
                 </li>                
                 <li>
-                    <button onclick="moveto('high',+30), message('High Angle')">
+                    <button onclick="move_to('high',+30), message('High Angle')">
                         High Angle
                     </button>
                 </li>
                 <li>
-                    <button onclick="moveto('_',0), message('Straight Angle')">
-                        Straight Angle
+                    <button onclick="move_to('eye',0), message('Eye Level')">
+                        Eye Level
                     </button>
                 </li>
                 <li>
-                    <button onclick="moveto('low',-30), message('Low Angle')">
+                    <button onclick="move_to('low',-30), message('Low Angle')">
                         Low Angle
                     </button>
                 </li>                
                 <li>
-                    <button onclick="moveto('_',-60), message('Worm\'s Eye')">
-                        Worm's Eye
+                    <button onclick="move_to('frog',-60), message('Frog Eye')">
+                        Frog Eye
                     </button>
                 </li>
             </ul>

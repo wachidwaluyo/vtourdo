@@ -30,8 +30,14 @@ function krpano_ready(krpano_interface) {
 function krpano_is_ready() {
     if (krpano && krpano.call) {
         krpano.set("events.onloadcomplete", "js( call_func() )");
+        //krpano.set("events.onnewpano", "js( newpano() )");
         krpano.set("events.keep", true);
     }
+}
+
+function newpano() {
+    krpano.set("view.pannini", true);
+    krpano.set("view.stereographic", true);
 }
 
 function call_func() {
@@ -64,93 +70,51 @@ function html5_title() {
     }
 }
 
-function get_current_scene_title() {
-    var title = krpano.get("scene[get(xml.scene)].title");
-    return title;
-}
-
-function moveto(mode, tov) {
+function move_to(mode, tov) {
     if (krpano) {
-        // Need to specify toh and tov manually
-        // krpano.call("moveto(" + toh + "," + tov + ")");
         // Get hlookat value based on current view
         var hlookat = krpano.get("view.hlookat");
 
-/*        krpano.set("view.fov", 0);
-        krpano.set("view.fovmax", 140);
-        krpano.set("view.hlookat", 0);
-        krpano.set("view.vlookat", 0);
-        krpano.set("view.maxpixelzoom", 2.0);*/
+        krpano.set("view.pannini", false);
+        krpano.set("view.stereographic", true);
+        krpano.call("tween(view.architectural, 1.0, distance(1.0,0.5))");
+        krpano.call("tween(view.pannini,       0.0, distance(1.0,0.5))");
+        krpano.call("tween(view.fisheye, 1.0, distance(1.0, 0.8), easeoutquad)");
 
         switch(mode) {
           case 'bird':
-            krpano.set("view.pannini", false);
-            krpano.set("view.stereographic", true);
-            krpano.set("view.fov", 130);
+            krpano.set("view.fov", 150);
             krpano.set("view.fovmax", 150);
-            krpano.set("view.hlookat", 130);
-            krpano.set("view.vlookat", 30);
-            krpano.call("tween(view.fisheye, 1.0, distance(1.0, 0.8), easeoutquad)");
+            krpano.call("moveto(" + hlookat + "," + tov + ")");
             break;
           case 'high':
-            krpano.set("view.pannini", true);
-            krpano.set("view.stereographic", false);
-            krpano.call("tween(view.architectural, 1.0, distance(1.0,0.5))");
-            krpano.call("tween(view.pannini,       0.0, distance(1.0,0.5))");
-            krpano.call("tween(view.fisheye,       0.0, distance(1.0,0.5))");
-
-            krpano.set("view.fov", 130);
+            krpano.set("view.fov", 90);
             krpano.set("view.fovmax", 150);
-            krpano.set("view.maxpixelzoom", 1.0);
-            
+            krpano.call("moveto(" + hlookat + "," + tov + ")");
+            break;
+          case 'eye':
+            krpano.set("view.fov", 90);
+            krpano.set("view.fovmax", 150);
             krpano.call("moveto(" + hlookat + "," + tov + ")");
             break;
           case 'low':
-            krpano.set("view.pannini", false);
-            krpano.set("view.stereographic", true);
-            krpano.set("view.fov", 80);
+            krpano.set("view.fov", 90);
             krpano.set("view.fovmax", 150);
-            krpano.set("view.hlookat", 130);
-            krpano.set("view.vlookat", 30);
-            krpano.call("tween(view.fisheye, 1.0, distance(1.0, 0.8), easeoutquad)");
-            break;
-          default:
-            krpano.set("view.pannini", true);
-            krpano.set("view.stereographic", false);
-            krpano.call("tween(view.architectural, 1.0, distance(1.0,0.5))");
-            krpano.call("tween(view.pannini,       0.0, distance(1.0,0.5))");
-            krpano.call("tween(view.fisheye,       0.0, distance(1.0,0.5))");
-
-            krpano.set("view.fov", 70.000);
-            krpano.set("view.fovmax", 140);
-            krpano.set("view.maxpixelzoom", 4.0);
-            
             krpano.call("moveto(" + hlookat + "," + tov + ")");
+            break;
+          case 'frog':
+            krpano.set("view.fov", 150);
+            krpano.set("view.fovmax", 150);
+            krpano.call("moveto(" + hlookat + "," + tov + ")");
+            break;            
+          default:
+            // krpano.set("view.fov", 120);
+            // krpano.set("view.fovmax", 140);                   
+            // krpano.call("moveto(" + hlookat + "," + tov + ")");
+            break;
         }
     }
 
-}
-
-function moveto_stereo() {
-    if (krpano) {
-        krpano.set("view.pannini", false);
-        krpano.set("view.stereographic", true);
-        krpano.set("view.fov", 130);
-        krpano.set("view.fovmax", 150);
-        krpano.set("view.hlookat", 130);
-        krpano.set("view.vlookat", 30);
-        krpano.call("tween(view.fisheye, 1.0, distance(1.0, 0.8), easeoutquad)");
-    }
-}
-
-function get_lookat() {
-    if (krpano) {
-        var hlookat = krpano.get("view.hlookat");
-        var vlookat = krpano.get("view.vlookat");
-        var fov = krpano.get("view.fov");
-
-        document.getElementById("currentview").innerHTML = 'hlookat="' + hlookat.toFixed(2) + '" ' + 'vlookat="' + vlookat.toFixed(2) + '" ' + 'fov="' + fov.toFixed(2) + '" ';
-    }
 }
 
 function message(text) {
@@ -186,4 +150,20 @@ function ajax_get(url, callback) {
  
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
+}
+
+// Sample function to get hlookat and vlookat
+function get_lookat() {
+    if (krpano) {
+        var hlookat = krpano.get("view.hlookat");
+        var vlookat = krpano.get("view.vlookat");
+        var fov = krpano.get("view.fov");
+
+        document.getElementById("currentview").innerHTML = 'hlookat="' + hlookat.toFixed(2) + '" ' + 'vlookat="' + vlookat.toFixed(2) + '" ' + 'fov="' + fov.toFixed(2) + '" ';
+    }
+}
+
+function get_current_scene_title() {
+    var title = krpano.get("scene[get(xml.scene)].title");
+    return title;
 }

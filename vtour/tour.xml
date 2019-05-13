@@ -72,7 +72,8 @@
 	<action name="startup" devices="flash|html5+!ios" >
 		if(startscene === null, copy(startscene,scene[0].name));set(display.flash10, off); 
 		loadscene(get(startscene),view.stereographic=true&amp;view.fisheye=1.0&amp;view.fov=155&amp;view.fovtype=VFOV&amp;view.fovmax=150&amp;view.hlookat=-120&amp;view.vlookat=77);
-		set(autorotate.enabled,true);
+		<!-- Set true to rotate pano automatically -->
+		set(autorotate.enabled,false);
 		set(autorotate.speed,2);
 		wait(blend);
 		delayedcall(2, normalview() );
@@ -177,7 +178,7 @@
 
 	<scene name="scene_Gedung_Fakultas_Teknik" title="Gedung Fakultas Teknik" thumburl="panos/Gedung_Fakultas_Teknik.tiles/thumb.jpg" lat="-7.31587500" lng="112.72693611" heading="180.0">
 
-		<view hlookat="-185.270" vlookat="-7.751" fovtype="MFOV" fov="70.000" maxpixelzoom="4.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="-192" vlookat="-6" fovtype="MFOV" fov="90" maxpixelzoom="2.0" fovmin="70" fovmax="150" limitview="auto" />
 
 		<preview url="panos/Gedung_Fakultas_Teknik.tiles/preview.jpg" />
 
